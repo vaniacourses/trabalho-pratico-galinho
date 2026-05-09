@@ -28,9 +28,19 @@ public class ServicoController {
         return servicoService.recuperarServicos();
     }
 
-    @GetMapping("{id}")
-    public ServicoDto recuperarServicos(@PathVariable("id") long id){
+    @GetMapping("{idServico}")
+    public ServicoDto recuperarServicos(@PathVariable("idServico") long id){
         return servicoService.recuperarServico(id);
+    }
+
+    @GetMapping("/cliente/{idCliente}")
+    public List<ServicoDto> recuperarServicosDeCliente(@PathVariable("idCliente") long idCliente){
+        return servicoService.recuperarServicosDeCliente(idCliente);
+    }
+
+    @GetMapping("{idServico}/{idCliente}")
+    public ServicoDto recuperarServicoDeCliente(@PathVariable("idServico") long idServico, @PathVariable("idCliente") long idCliente){
+        return servicoService.recuperarServicoDeCliente(idServico, idCliente);
     }
     
     @PutMapping

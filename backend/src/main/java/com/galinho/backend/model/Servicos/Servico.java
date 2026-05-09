@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -35,14 +36,15 @@ public class Servico {
     private String descricao;
     private int Orcamento;
     
-    @OneToOne
-    private PagamentoServico pagamento;
+    //@OneToOne
+    //private PagamentoServico pagamento;
     @OneToMany
     private List<Mecanico> mecanicos;
     @ManyToOne
+    @JoinColumn(name = "veiculo_placa")
     private Veiculo veiculo;
 
-    public Servico(String descricao, int Orcamento, Veiculo veiculo, Date dataPrevisao){
+    public Servico(String descricao, int Orcamento, Date dataPrevisao, Veiculo veiculo){
         this.descricao = descricao;
         this.Orcamento = Orcamento;
         this.veiculo = veiculo;
