@@ -3,11 +3,13 @@ package com.galinho.backend.dto.Financeiro;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public record FluxoFinanceiroDTO(Long id,
+import com.galinho.backend.utils.TipoMovimentacao;
+
+public record FluxoFinanceiroDto(Long id,
                                 BigDecimal valor,
                                 String titulo,
                                 String descricao,
-                                Boolean ehEntrada,
+                                TipoMovimentacao tipo,
                                 LocalDateTime data,
                                 String origemOuDestino) {
 }

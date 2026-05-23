@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,13 +28,14 @@ public abstract class PagamentoServico {
     private Long id;
 
     private BigDecimal valorFinal;
-    private LocalDateTime data;
+    private LocalDateTime dataPagamento;
 
     @OneToOne
+    @JoinColumn(name = "servico_id")
     private Servico servico;
 
-    public PagamentoServico(BigDecimal valorFinal, LocalDateTime data) {
+    public PagamentoServico(BigDecimal valorFinal, LocalDateTime dataPagamento) {
         this.valorFinal = valorFinal;
-        this.data = data;
+        this.dataPagamento = dataPagamento;
     }
 }

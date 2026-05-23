@@ -3,20 +3,22 @@ package com.galinho.backend.model.Financeiro;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.galinho.backend.utils.TipoMovimentacao;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class FluxoFinanceiro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,23 +27,20 @@ public class FluxoFinanceiro {
     private BigDecimal valor;
     private String titulo;
     private String descricao;
-    private Boolean ehEntrada;
     private LocalDateTime data;
-
-    // @Column(name = "origem_destino") -- da pra mapear com um nome melhor que da var real
     private String origemOuDestino;
 
-    @ManyToOne
-    @JoinColumn(name = "historico_id")
-    private HistoricoFinanceiro historico;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoMovimentacao tipo;
 
-    public FluxoFinanceiro(BigDecimal valor, String titulo, String descricao, Boolean ehEntrada, LocalDateTime data, String origemOuDestino, HistoricoFinanceiro historico) {
+    // Construtor atualizado
+    public FluxoFinanceiro(BigDecimal valor, String titulo, String descricao, TipoMovimentacao tipo, LocalDateTime data, String origemOuDestino) {
         this.valor = valor;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.ehEntrada = ehEntrada;
+        this.tipo = tipo;
         this.data = data;
         this.origemOuDestino = origemOuDestino;
-        this.historico = historico;
     }
 }
