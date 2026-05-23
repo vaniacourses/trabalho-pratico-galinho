@@ -10,17 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
 import com.galinho.backend.exception.EntidadeNaoEncontradaException;
-import com.galinho.backend.mapper.MapperServico;
+import com.galinho.backend.mapper.ServicoMapper;
+import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
+import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
 
 @Service
 public class ServicoService {
     @Autowired
     private ServicoRepository servicoRepository;
+    @Autowired
+    private HistoricoServicoRepository historicoServicoRepository;
 
     @Autowired
-    private MapperServico mapperServico;
+    private ServicoMapper mapperServico;
 
     public List<ServicoDto> recuperarServicos(){
         List<Servico> servicos = servicoRepository.recuperarServicos();
@@ -44,16 +48,28 @@ public class ServicoService {
         return mapperServico.toServicoDto(servico);
     }
 
+    // Usado em cadastrarServico e atualizarServico
+    public void cadastrarHistoricoServico(Servico servico){
+        HistoricoServico hist = new HistoricoServico(servico.getStatus(), servico.getOrcamento(), servico);
+        historicoServicoRepository.save(hist);
+    }
+
     public ServicoDto atualizarServico(ServicoDto servicoDto){
         Servico servico = mapperServico.toServico(servicoDto);
         servico = servicoRepository.save(servico);
+        cadastrarHistoricoServico(servico);
         return mapperServico.toServicoDto(servico);
     }
 
     public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
         Servico servico = mapperServico.toServico(servicoCreate);
         servico = servicoRepository.save(servico);
+        cadastrarHistoricoServico(servico);
         return mapperServico.toServicoDto(servico);
     }
-    
+
+    public void deletarServico(long id){
+        servicoRepository.deleteById(id);;
+    }
+
 }

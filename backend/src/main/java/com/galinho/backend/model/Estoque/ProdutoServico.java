@@ -1,4 +1,4 @@
-package com.galinho.backend.model.Financeiro;
+package com.galinho.backend.model.Estoque;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PagamentoServico {
+public class ProdutoServico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

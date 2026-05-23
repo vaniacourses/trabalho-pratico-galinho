@@ -1,13 +1,20 @@
 package com.galinho.backend.model.Servicos;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import com.galinho.backend.model.Estoque.ProdutoServico;
 import com.galinho.backend.model.Financeiro.PagamentoServico;
+import com.galinho.backend.model.Servicos.Tarefa.Tarefa;
+import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Usuarios.Mecanico;
+import com.galinho.backend.utils.TipoStatus;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,28 +36,34 @@ public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
-    private Date dataInicio;
-    private Date dataFim;
-    private Date dataPrevisao;
+    @Enumerated(EnumType.STRING)
+    private TipoStatus status;
+    private LocalDateTime dataInicio;
+    private LocalDateTime dataFim;
+    private LocalDateTime dataPrevisao;
     private String descricao;
-    private int Orcamento;
+    private BigDecimal orcamento;
     
-    //@OneToOne
-    //private PagamentoServico pagamento;
+    @OneToOne
+    private PagamentoServico pagamento;
     @OneToMany
     private List<Mecanico> mecanicos;
     @ManyToOne
     @JoinColumn(name = "veiculo_placa")
     private Veiculo veiculo;
+    @OneToOne
+    private TarefaEntity conjuntoTarefas;
+    @OneToMany
+    private List<ProdutoServico> produtosUsados;
 
-    public Servico(String descricao, int Orcamento, Date dataPrevisao, Veiculo veiculo){
+
+    public Servico(String descricao, BigDecimal orcamento, LocalDateTime dataPrevisao, Veiculo veiculo){
         this.descricao = descricao;
-        this.Orcamento = Orcamento;
+        this.orcamento = orcamento;
         this.veiculo = veiculo;
-        dataInicio = new Date();
+        dataInicio = LocalDateTime.now();
         this.dataPrevisao = dataPrevisao;
-        this.status = "A ser iniciado";
+        this.status = TipoStatus.A_SER_INICIADO;
         mecanicos = new ArrayList<>();
     }
 }

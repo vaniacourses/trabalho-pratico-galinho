@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.galinho.backend.model.Servicos.Servico;
+import com.galinho.backend.utils.TipoStatus;
 
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Query("""
@@ -37,4 +38,5 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
             """)
     Servico recuperarServicoDeCliente(@Param("idServico") long idServico, @Param("idCliente") long idCliente);
 
+    //List<Servico> findByStatusOrderByDataInicioAsc(TipoStatus status); //Passar TipoStatus.BLABLA
 }
