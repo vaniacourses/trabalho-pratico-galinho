@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.galinho.backend.dto.HistoricoServicoDto;
-import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.service.HistoricoServicoService;
 
 @RestController
@@ -21,6 +20,4 @@ public class HistoricoServicoController {
     public List<HistoricoServicoDto> recuperarHistoricoServicos(){
         return historicoServico.recuperarHistoricoServicos();
     }
-
-
 }

@@ -17,7 +17,17 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
          
         order by s.id
     """) //left join fetch s.pagamento
-    List<Servico> recuperarServicos();    
+    List<Servico> recuperarServicos();   
+    
+
+    @Query("""
+        select s from Servico s 
+        left join fetch s.veiculo 
+        left join fetch s.mecanicos 
+        where s.status <> com.galinho.backend.utils.TipoStatus.CONCLUIDO 
+        order by s.id
+    """)
+    List<Servico> recuperarServicosEmProcesso();
 
     @Query("""
             select s 

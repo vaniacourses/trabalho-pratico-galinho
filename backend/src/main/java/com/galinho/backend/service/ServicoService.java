@@ -31,6 +31,11 @@ public class ServicoService {
         return mapperServico.toServicosDto(servicos);
     }
 
+    public List<ServicoDto> recuperarServicosEmProcesso(){
+        List<Servico> servicos = servicoRepository.recuperarServicosEmProcesso();
+        return mapperServico.toServicosDto(servicos);
+    }
+
     public ServicoDto recuperarServico(long id){
         Servico servico = servicoRepository.findById(id).orElseThrow(
             () -> new EntidadeNaoEncontradaException(

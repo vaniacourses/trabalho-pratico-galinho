@@ -21,5 +21,4 @@ public class HistoricoServicoService {
         List<HistoricoServico> historico = historicoServicoRepository.recuperarHistoricoServicos();
         return historicoServicoMapper.toHistoricoServicosDto(historico);
     }
-
 }

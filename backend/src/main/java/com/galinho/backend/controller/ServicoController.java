@@ -3,6 +3,7 @@ package com.galinho.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/servicos")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ServicoController {
     @Autowired
     private ServicoService servicoService;
@@ -27,6 +29,11 @@ public class ServicoController {
     @GetMapping
     public List<ServicoDto> recuperarServicos(){
         return servicoService.recuperarServicos();
+    }
+
+    @GetMapping("EmProcesso")
+    public List<ServicoDto> recuperarServicosEmProcesso(){
+        return servicoService.recuperarServicosEmProcesso();
     }
 
     @GetMapping("{idServico}")
