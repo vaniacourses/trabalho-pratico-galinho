@@ -1,63 +1,62 @@
 import { useNavigate, useParams } from "react-router-dom";
-//import useRecuperarProdutoPorId from "../hooks/useRecuperarProdutoPorId";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-//import useRemoverProduto from "../hooks/useRemoverProduto";
-//import useProdutoStore from "../store/ProdutoStore";
-import type { Produto } from "../interfaces/Produto";
-import useAlterarServico from "../hooks/useAtualizarServico";
+// import { useEffect, useState } from "react";
+import useRecuperarServicoPorId from "../hooks/useRecuperarServicoPorId";
+import type { Servico } from "../interfaces/Servico";
+import useServicoStore from "../store/ServicoStore";
+import TabelaDeProdutos from "../components/TabelaDeProdutos";
 
 const ProdutoPage = () => {
-  const [removido, setRemovido] = useState(false);
-  const mensagem = useProdutoStore((s) => s.mensagem);
-  const setMensagem = useProdutoStore((s) => s.setMensagem);
-  const setProdutoSelecionado = useProdutoStore((s) => s.setProdutoSelecionado);
+  // const [removido, setRemovido] = useState(false);
+  // const mensagem = useProdutoStore((s) => s.mensagem);
+  // const setMensagem = useProdutoStore((s) => s.setMensagem);
+  const setServicoSelecionado = useServicoStore((s) => s.setServicoSelecionado);
   const navigate = useNavigate();
   
   const { id } = useParams();
 
   const {
-    data: produto,
-    isPending: recuperandoProduto,
-    error: errorRecuperarProduto,
-  } = useRecuperarProdutoPorId(+id!, removido);
+    data: servico,
+    isPending: recuperandoServico,
+    error: errorRecuperarServico,
+  } = useRecuperarServicoPorId(+id!);    //, removido);
 
-  const tratarEdicao = (produto: Produto) => {
-    setProdutoSelecionado(produto);
-    navigate("/cadastrar-produto");
+  const tratarEdicao = (servico: Servico) => {
+    setServicoSelecionado(servico);
+    navigate("/cadastrar-servico");
   };
 
-  const tratarAtualizacao = (id: number) => {
-    atualizarServico(id);
-    setRemovido(true);
-    setMensagem("Produto removido com sucesso!");
-  };
+  // const tratarRemocao = (id: number) => {
+  //   removerProduto(id);
+  //   setRemovido(true);
+  //   setMensagem("Produto removido com sucesso!");
+  // };
 
-  const { mutate: atualizarServico, 
-          error: errorRemoverProduto } = useAlterarServico();
+  // const { mutate: removerProduto, 
+  //         error: errorRemoverProduto } = useRemoverProduto();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    return () => {
-      setMensagem("");
-    }
-  },[])
+  //   return () => {
+  //     setMensagem("");
+  //   }
+  // },[])
 
-  if (errorRecuperarProduto) throw errorRecuperarProduto;
-  if (errorRemoverProduto) throw errorRemoverProduto;
-  if (recuperandoProduto)
-    return <p className="text-lg">Recuperando produto...</p>;
+  if (errorRecuperarServico) throw errorRecuperarServico;
+  // if (errorRemoverProduto) throw errorRemoverProduto;
+  if (recuperandoServico)
+    return <p className="text-lg">Recuperando servico...</p>;
 
   return (
     <>
-      <h1 className="mb-1 text-xl font-semibold">Página de Produto</h1>
+      <h1 className="mb-1 text-xl font-semibold">Página do Serviço</h1>
       <hr className="mb-4" />
 
-      {mensagem && (
+      {/* {mensagem && (
         <div className="mb-3 rounded border-2 border-green-600 bg-green-100 px-4 py-3 font-bold text-green-800">
           {mensagem}
         </div>
-      )}
+      )} */}
 
       {/* 
       Modos do Tailwindcss:
@@ -68,37 +67,37 @@ const ProdutoPage = () => {
       2xl: 1536px */}
 
       <div className="grid grid-cols-12">
-        <div className="col-span-12 lg:col-span-4 xl:col-span-3">
+        {/* <div className="col-span-12 lg:col-span-4 xl:col-span-3"> */}
           {/* Para chegar nessa página o url foi /produtos/:id */}
           {/* Sem a / abaixo seria enviada uma requisição para /produtos/abacate.png*/}
-          <img className="lg:hidden" src={"/" + produto.imagem} width="170px" />
+          {/* <img className="lg:hidden" src={"/" + servico.imagem} width="170px" />
           <img
             className="hidden lg:block"
-            src={"/" + produto.imagem}
+            src={"/" + servico.imagem}
             width="210px"
-          />
-        </div>
+          /> */}
+        {/* </div> */}
         <div className="col-span-12 mb-2 lg:col-span-8 xl:col-span-9">
           <div className="grid grid-cols-12">
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Categoria
+              Status
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {produto.categoria.nome}
+              {servico.status}
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Nome
+              Descricao
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {produto.nome} ({produto.descricao})
+              {servico.descricao}
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Preço
+              Orçamento
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {produto.preco.toLocaleString("pt-BR", {
+              {servico.orcamento.toLocaleString("pt-BR", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
                 useGrouping: true,
@@ -106,47 +105,64 @@ const ProdutoPage = () => {
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Estoque
+              Veiculo
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {produto.qtdEstoque}
+              {servico.veiculo.placa}
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Data Cadastro
+              Data Inicio
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {dayjs(produto.dataCadastro).format("DD/MM/YYYY")}
+              {dayjs(servico.dataInicio).format("DD/MM/YYYY")}
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
-              Disponível
+              Data Fim
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
-              {produto.disponivel ? "Sim" : "Não"}
+              {dayjs(servico.dataFim).format("DD/MM/YYYY")}
+            </div>
+            
+            <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
+              Valor Pago
+            </div>
+            <div className="col-span-8 lg:col-span-9 xl:col-span-10">
+              {servico.pagamento ? 
+                servico.pagamento.valorFinal.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+                useGrouping: true,})
+                :
+                " - "
+              }
             </div>
           </div>
+        
+          <TabelaDeProdutos produtos={servico.produtosUsados} />
+            
         </div>
         <div className="col-span-4 me-3 xl:col-span-3">
           <button
-            onClick={() => tratarEdicao(produto)}
-            disabled={removido}
+            onClick={() => tratarEdicao(servico)}
+            // disabled={removido}
             className="btn-success w-full py-1"
             type="button"
           >
             Editar
           </button>
         </div>
-        <div className="col-span-4 me-3 xl:col-span-3">
+        {/* <div className="col-span-4 me-3 xl:col-span-3">
           <button
-            onClick={() => tratarAtualizacao(produto.id)}
+            onClick={() => tratarRemocao(produto.id)}
             disabled={removido}
             className="btn-danger w-full py-1"
             type="button"
           >
             Remover
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );

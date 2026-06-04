@@ -18,7 +18,7 @@ const recuperarServicos = async () => {
 
 const useRecuperarServicos = () => {
   return useQuery({
-    queryKey: ["servicos"],
+    queryKey: ["servicos", "todos"],
     queryFn: recuperarServicos,
     staleTime: 10_000,
   });

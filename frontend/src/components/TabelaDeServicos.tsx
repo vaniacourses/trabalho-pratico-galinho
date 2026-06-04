@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import databaseDelete from '../assets/skin/database_delete.png';
 import { Link } from "react-router-dom";
 import type { Servico } from "../interfaces/Servico";
 

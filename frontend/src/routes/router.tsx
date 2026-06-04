@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import Layout from "./Layout";
 import ServicosPage from "../pages/ServicosPage";
 import ServicosEmAndamentoPage from "../pages/ServicosEmAndamentoPage";
+import ServicoPage from "../pages/ServicoPage";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
             {path: "home", element: <HomePage />},
             {path: "login", element: <LoginPage />},
             {path: "servicos", element: <ServicosPage/>},
-            {path: "servicosEmProcesso", element: <ServicosEmAndamentoPage/>}
+            {path: "servicosEmProcesso", element: <ServicosEmAndamentoPage/>},
+            {path: "servicos/:id", element: <ServicoPage/>}
         ]
     }
 ])
