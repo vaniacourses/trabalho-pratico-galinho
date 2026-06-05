@@ -146,7 +146,7 @@ const ServicoPageCliente = () => {
             </div>
           </div>
         
-          <TabelaDeProdutos produtos={servico.produtosUsados} />
+           { servico.produtosUsados ? <TabelaDeProdutos produtos={servico.produtosUsados}/> : ""}
 
           {/* <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
             Tarefa
@@ -155,8 +155,8 @@ const ServicoPageCliente = () => {
             { servico.conjuntoTarefas? servico.conjuntoTarefas.descricao : " - "}
           </div> */}
 
-          <TabelaDeTarefas tarefas={tarefas}/>
-            
+          { tarefas ? <TabelaDeTarefas tarefas={tarefas}/> : ""}  
+
         </div>
         <div className="col-span-4 me-3 xl:col-span-3">
           <button

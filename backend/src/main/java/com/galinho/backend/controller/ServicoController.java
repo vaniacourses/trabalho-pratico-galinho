@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/servicos")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin("*")
 public class ServicoController {
     @Autowired
     private ServicoService servicoService;

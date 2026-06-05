@@ -139,8 +139,10 @@ const ServicoPageCliente = () => {
               }
             </div>
           </div>
-        
-          <TabelaDeProdutos produtos={servico.produtosUsados} />
+          
+          { servico.produtosUsados ? 
+          <TabelaDeProdutos produtos={servico.produtosUsados} /> : ""
+          } 
             
         </div>
         <div className="col-span-4 me-3 xl:col-span-3">
