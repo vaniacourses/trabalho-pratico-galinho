@@ -35,7 +35,7 @@ public class Servico {
     private Date dataFim;
     private Date dataPrevisao;
     private String descricao;
-    private int Orcamento;
+    private BigDecimal Orcamento;
     
     //@OneToOne
     //private PagamentoServico pagamento;
