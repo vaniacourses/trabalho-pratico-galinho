@@ -1,5 +1,6 @@
 package com.galinho.backend.model.Servicos;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ public class Servico {
     private Date dataFim;
     private Date dataPrevisao;
     private String descricao;
-    private int Orcamento;
+    private BigDecimal Orcamento;
     
     //@OneToOne
     //private PagamentoServico pagamento;
