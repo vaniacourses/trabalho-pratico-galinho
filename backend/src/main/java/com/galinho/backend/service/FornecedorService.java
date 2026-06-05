@@ -12,6 +12,8 @@ import com.galinho.backend.mapper.MapperFornecedor;
 import com.galinho.backend.model.Estoque.Fornecedor;
 import com.galinho.backend.repository.FornecedorRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class FornecedorService {
     @Autowired
@@ -21,7 +23,8 @@ public class FornecedorService {
     private MapperFornecedor mapperFornecedor;
 
     public List<FornecedorDto> recuperarFornecedores(){
-        return fornecedorRepository.recuperarFornecedores();
+        List<Fornecedor> fornecedores = fornecedorRepository.recuperarFornecedores();
+        return mapperFornecedor.toFornecedoresDto(fornecedores);
      }
 
      public FornecedorDto recuperarFornecedorPorId(Long id){
@@ -31,12 +34,14 @@ public class FornecedorService {
         return mapperFornecedor.toFornecedorDto(fornecedor);
      }
 
+     @Transactional
      public FornecedorDto atualizarFornecedor(FornecedorDto fornecedorDto){
          Fornecedor fornecedor = mapperFornecedor.toFornecedor(fornecedorDto);
          fornecedor = fornecedorRepository.save(fornecedor);
          return mapperFornecedor.toFornecedorDto(fornecedor);
      }
 
+     @Transactional
      public FornecedorDto cadastrarFornecedor(FornecedorCreate fornecedorCreate){
          Fornecedor fornecedor = mapperFornecedor.toFornecedor(fornecedorCreate);
          fornecedor = fornecedorRepository.save(fornecedor);

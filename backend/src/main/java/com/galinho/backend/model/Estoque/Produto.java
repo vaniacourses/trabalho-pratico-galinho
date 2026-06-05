@@ -22,7 +22,7 @@ import lombok.ToString;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String codigo;
+    private int codigo;
     private String nome;
     private String descricao;
     private BigDecimal preco;

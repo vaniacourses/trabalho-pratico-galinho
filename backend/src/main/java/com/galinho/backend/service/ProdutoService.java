@@ -1,5 +1,7 @@
 package com.galinho.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,9 @@ public class ProdutoService {
     @Autowired
     private MapperProduto mapperProduto;
 
-    public ProdutoDto recuperarProdutos() {
-        return produtoRepository.recuperarProdutos();
+    public List<ProdutoDto> recuperarProdutos() {
+        List<Produto> produtos = produtoRepository.recuperarProdutos();
+        return mapperProduto.toProdutosDto(produtos);
     }
 
     public  ProdutoDto recuperarProdutoPorId(Long id) {
@@ -31,7 +34,8 @@ public class ProdutoService {
 
     public ProdutoDto atualizarProduto(ProdutoDto produtoDto) {
         Produto produto = mapperProduto.toProduto(produtoDto);
-        return mapperProduto.toProdutoDto(produtoRepository.save(produto));
+        produto = produtoRepository.save(produto);
+        return mapperProduto.toProdutoDto(produto);
     }
 
     public ProdutoDto criarProduto(ProdutoCreate produtoCreate) {

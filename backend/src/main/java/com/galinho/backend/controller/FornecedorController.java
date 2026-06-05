@@ -31,7 +31,7 @@ public class FornecedorController {
     public FornecedorDto recuperarFornecedorPorId(@PathVariable Long id) {
         return fornecedorService.recuperarFornecedorPorId(id);
     }
-
+    
     @PutMapping
     public FornecedorDto atualizarFornecedor(@RequestBody FornecedorDto fornecedorDto) {
         return fornecedorService.atualizarFornecedor(fornecedorDto);

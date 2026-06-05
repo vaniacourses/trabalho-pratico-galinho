@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import com.galinho.backend.dto.FornecedorCreate;
 import com.galinho.backend.dto.FornecedorDto;
 import com.galinho.backend.model.Estoque.Fornecedor;
+import com.galinho.backend.dto.ProdutoDto;
+import com.galinho.backend.model.Estoque.Produto;
 
 
 
@@ -20,5 +22,5 @@ public interface MapperFornecedor {
 
     Fornecedor toFornecedor(FornecedorCreate fornecedorCreate);
 
-    
+
 }
