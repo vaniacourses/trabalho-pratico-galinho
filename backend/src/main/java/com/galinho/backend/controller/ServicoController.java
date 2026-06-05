@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
+import com.galinho.backend.dto.ServicoMecanicoDto;
 import com.galinho.backend.service.ServicoService;
 
 import jakarta.validation.Valid;
@@ -37,7 +38,7 @@ public class ServicoController {
     }
 
     @GetMapping("{idServico}")
-    public ServicoDto recuperarServicos(@PathVariable("idServico") long id){
+    public ServicoDto recuperarServico(@PathVariable("idServico") long id){
         return servicoService.recuperarServico(id);
     }
 
@@ -64,5 +65,21 @@ public class ServicoController {
     @DeleteMapping("{idServico}")
     public void deletarServico(@PathVariable("idServico") long id){
         servicoService.deletarServico(id);
+    }
+
+    //MECANICOS
+    @GetMapping("mecanico")
+    public List<ServicoMecanicoDto> recuperarServicosMecanicos(){
+        return servicoService.recuperarServicosMecanicos();
+    }
+
+    @GetMapping("mecanico/EmProcesso")
+    public List<ServicoMecanicoDto> recuperarServicosMecanicosEmProcesso(){
+        return servicoService.recuperarServicosMecanicosEmProcesso();
+    }
+
+    @GetMapping("mecanico/{idServico}")
+    public ServicoMecanicoDto recuperarServicoMecanico(@PathVariable("idServico") long id){
+        return servicoService.recuperarServicoMecanico(id);
     }
 }

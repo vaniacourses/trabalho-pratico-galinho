@@ -1,12 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 // import { useEffect, useState } from "react";
-import useRecuperarServicoPorId from "../hooks/useRecuperarServicoPorId";
 import type { Servico } from "../interfaces/Servico";
 import useServicoStore from "../store/ServicoStore";
 import TabelaDeProdutos from "../components/TabelaDeProdutos";
+import useRecuperarServicoMecanicoPorId from "../hooks/useRecuperarServicoMecanicoPorId";
+import TabelaDeTarefas from "../components/TabelaDeTarefas";
+import { recuperarTarefas } from "../util/recuperarTarefas";
 
-const ProdutoPage = () => {
+const ServicoPageCliente = () => {
   // const [removido, setRemovido] = useState(false);
   // const mensagem = useProdutoStore((s) => s.mensagem);
   // const setMensagem = useProdutoStore((s) => s.setMensagem);
@@ -19,12 +21,16 @@ const ProdutoPage = () => {
     data: servico,
     isPending: recuperandoServico,
     error: errorRecuperarServico,
-  } = useRecuperarServicoPorId(+id!);    //, removido);
+  } = useRecuperarServicoMecanicoPorId(+id!);    //, removido);
 
   const tratarEdicao = (servico: Servico) => {
     setServicoSelecionado(servico);
     navigate("/cadastrar-servico");
   };
+
+  const tarefas = servico?.conjuntoTarefas
+    ? recuperarTarefas(servico.conjuntoTarefas)
+    : [];
 
   // const tratarRemocao = (id: number) => {
   //   removerProduto(id);
@@ -141,6 +147,15 @@ const ProdutoPage = () => {
           </div>
         
           <TabelaDeProdutos produtos={servico.produtosUsados} />
+
+          {/* <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
+            Tarefa
+          </div>
+          <div className="col-span-8 lg:col-span-9 xl:col-span-10">
+            { servico.conjuntoTarefas? servico.conjuntoTarefas.descricao : " - "}
+          </div> */}
+
+          <TabelaDeTarefas tarefas={tarefas}/>
             
         </div>
         <div className="col-span-4 me-3 xl:col-span-3">
@@ -167,4 +182,4 @@ const ProdutoPage = () => {
     </>
   );
 };
-export default ProdutoPage;
+export default ServicoPageCliente;

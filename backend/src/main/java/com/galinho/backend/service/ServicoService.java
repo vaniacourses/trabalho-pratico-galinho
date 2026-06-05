@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
+import com.galinho.backend.dto.ServicoMecanicoDto;
 import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.mapper.ServicoMapper;
 import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
+import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
+import com.galinho.backend.repository.VeiculoRepository;
 
 @Service
 public class ServicoService {
@@ -22,6 +25,8 @@ public class ServicoService {
     private ServicoRepository servicoRepository;
     @Autowired
     private HistoricoServicoRepository historicoServicoRepository;
+    @Autowired
+    private VeiculoRepository veiculoRepository;
 
     @Autowired
     private ServicoMapper mapperServico;
@@ -68,6 +73,13 @@ public class ServicoService {
 
     public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
         Servico servico = mapperServico.toServico(servicoCreate);
+        // Veiculo veiculo = veiculoRepository.findById(servicoCreate.veiculoId())
+        //     .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
+        Veiculo veiculo = veiculoRepository.findByPlaca(servicoCreate.veiculoPlaca())
+            .orElseThrow(() -> new RuntimeException(
+            "Veículo com placa " + servicoCreate.veiculoPlaca() + " não encontrado"
+        ));
+        servico.setVeiculo(veiculo);
         servico = servicoRepository.save(servico);
         cadastrarHistoricoServico(servico);
         return mapperServico.toServicoDto(servico);
@@ -77,4 +89,20 @@ public class ServicoService {
         servicoRepository.deleteById(id);;
     }
 
+
+    //MECANICOS
+    public List<ServicoMecanicoDto> recuperarServicosMecanicos(){
+        List<Servico> servicos = servicoRepository.recuperarServicos();
+        return mapperServico.toServicosMecanicosDto(servicos);
+    }
+
+    public List<ServicoMecanicoDto> recuperarServicosMecanicosEmProcesso(){
+        List<Servico> servicos = servicoRepository.recuperarServicosEmProcesso();
+        return mapperServico.toServicosMecanicosDto(servicos);
+    }
+
+    public ServicoMecanicoDto recuperarServicoMecanico(long id){
+        Servico servico = servicoRepository.recuperarServicosPorId(id);
+        return mapperServico.toServicoMecanicoDto(servico);
+    }
 }

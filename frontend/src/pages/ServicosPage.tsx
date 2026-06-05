@@ -1,6 +1,7 @@
 
 // import useRemoverProdutoOtimista from "../hooks/useRemoverProdutoOtimista";
 
+import { Link } from "react-router-dom";
 import TabelaDeServicos from "../components/TabelaDeServicos";
 import useRecuperarServicos from "../hooks/useRecuperarServicos";
 import useRemoverServicoOtimista from "../hooks/useRemoverServicoOtimista";
@@ -38,6 +39,9 @@ const ServicosPage = () => {
       <h1 className="mb-1 text-xl font-semibold">Lista de servicos</h1>
       <hr className="mb-4" />
       <TabelaDeServicos servicos={servicos}/>
+      <div>
+        <Link className="btn-success px-2 py-1" to={"/cadastrar-servico"}>Cadastrar Novo Serviço</Link>
+      </div>
     </>
   );
 };

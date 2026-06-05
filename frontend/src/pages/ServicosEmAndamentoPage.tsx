@@ -3,7 +3,6 @@
 
 import TabelaDeServicos from "../components/TabelaDeServicos";
 import useRecuperarServicosEmProcesso from "../hooks/useRecuperarServicosEmProcesso";
-import useRemoverServicoOtimista from "../hooks/useRemoverServicoOtimista";
 
 const ServicosEmAndamentoPage = () => {
   const {

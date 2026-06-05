@@ -5,7 +5,9 @@ import LoginPage from "../pages/LoginPage";
 import Layout from "./Layout";
 import ServicosPage from "../pages/ServicosPage";
 import ServicosEmAndamentoPage from "../pages/ServicosEmAndamentoPage";
-import ServicoPage from "../pages/ServicoPage";
+import ServicoPageCliente from "../pages/ServicoPageCliente";
+import ServicoPageMecanico from "../pages/ServicoPageMecanico";
+import CadastrarServicoPage from "../pages/CadastrarServicoPage";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +20,9 @@ const router = createBrowserRouter([
             {path: "login", element: <LoginPage />},
             {path: "servicos", element: <ServicosPage/>},
             {path: "servicosEmProcesso", element: <ServicosEmAndamentoPage/>},
-            {path: "servicos/:id", element: <ServicoPage/>}
+            {path: "servicos/:id", element: <ServicoPageCliente/>},
+            {path: "servicos/mecanico/:id", element: <ServicoPageMecanico/>},
+            {path: "cadastrar-servico", element: <CadastrarServicoPage/>},
         ]
     }
 ])

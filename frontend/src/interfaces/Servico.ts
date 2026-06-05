@@ -2,6 +2,7 @@ import type { Veiculo } from "./Veiculo";
 import type { Mecanico } from "./Mecanico";
 import type { PagamentoServico } from "./PagamentoServico";
 import type { ProdutoServico } from "./ProdutoServico";
+import type { Tarefa } from "./Tarefa";
 
 export interface Servico {
     id: number;
@@ -15,4 +16,5 @@ export interface Servico {
     mecanicos: Mecanico[];
     veiculo: Veiculo;
     produtosUsados: ProdutoServico[];
+    conjuntoTarefas: Tarefa;
 }

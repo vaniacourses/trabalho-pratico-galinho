@@ -23,4 +23,13 @@ public class TarefaAdicional extends TarefaDecorator{
     public BigDecimal calcularValor(){
         return tarefaDecorada.calcularValor().add(valor);
     }
+
+    public String getDescricao(){
+        //return tarefaDecorada.getDescricao().concat("\n" + descricao);
+        return descricao;
+    }
+
+    public TarefaEntity getTarefaDecorada() {
+        return tarefaDecorada;
+    }
 }

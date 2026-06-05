@@ -29,6 +29,7 @@ const TabelaDeServicos = ({ servicos }: Props) => {
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">Veiculo</th>
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">Cliente</th>
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">DataInicio</th>
+            <th className="border-r border-r-gray-200 p-1.5 font-semibold">DataPrevisao</th>
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">DataFim</th>
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">ValorPago</th>
             <th className="border-r border-r-gray-200 p-1.5 font-semibold">Ação</th>
@@ -48,6 +49,7 @@ const TabelaDeServicos = ({ servicos }: Props) => {
               </td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[8%]">{servico.veiculo.cliente.nome}</td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[12%]">{dayjs(servico.dataInicio).format("DD/MM/YYYY")}</td>
+              <td className="border-r border-r-gray-200 text-center py-1 w-[12%]">{dayjs(servico.dataPrevisao).format("DD/MM/YYYY")}</td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[12%]">{ servico.dataFim ? 
                 dayjs(servico.dataFim).format("DD/MM/YYYY")
                 :

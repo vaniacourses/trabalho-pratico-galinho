@@ -3,7 +3,9 @@ package com.galinho.backend.model.Servicos;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.galinho.backend.model.Estoque.ProdutoServico;
 import com.galinho.backend.model.Financeiro.PagamentoServico;
@@ -12,9 +14,11 @@ import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Usuarios.Mecanico;
 import com.galinho.backend.utils.TipoStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,14 +51,15 @@ public class Servico {
     @OneToOne
     private PagamentoServico pagamento;
     @OneToMany
-    private List<Mecanico> mecanicos;
+    private Set<Mecanico> mecanicos;
     @ManyToOne
     @JoinColumn(name = "veiculo_placa")
     private Veiculo veiculo;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "conjunto_tarefas_id")
     private TarefaEntity conjuntoTarefas;
-    @OneToMany
-    private List<ProdutoServico> produtosUsados;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<ProdutoServico> produtosUsados;
 
 
     public Servico(String descricao, BigDecimal orcamento, LocalDateTime dataPrevisao, Veiculo veiculo){
@@ -64,6 +69,6 @@ public class Servico {
         dataInicio = LocalDateTime.now();
         this.dataPrevisao = dataPrevisao;
         this.status = TipoStatus.A_SER_INICIADO;
-        mecanicos = new ArrayList<>();
+        mecanicos = new HashSet<>();
     }
 }

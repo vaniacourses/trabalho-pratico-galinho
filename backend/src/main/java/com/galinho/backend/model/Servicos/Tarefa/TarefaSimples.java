@@ -29,4 +29,8 @@ public class TarefaSimples extends TarefaEntity{
         return valor;
     }
 
+    public String getDescricao(){
+        return descricao;
+    }
+
 }
