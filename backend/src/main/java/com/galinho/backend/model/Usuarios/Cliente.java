@@ -1,8 +1,15 @@
 package com.galinho.backend.model.Usuarios;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.galinho.backend.model.Servicos.Veiculo;
+
 import com.galinho.backend.utils.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +26,10 @@ import java.time.LocalDate;
 public class Cliente extends Usuario {
 
     private String endereco;
+    
+    @OneToMany
+    @JsonIgnore
+    private List<Veiculo> veiculos;
 
     public Cliente(String email,
                    String senha,
@@ -34,5 +45,6 @@ public class Cliente extends Usuario {
         this.dataCadastro = LocalDate.now();
         this.role = Role.CLIENTE;
         this.endereco = endereco;
+        this.veiculos = new ArrayList<>();
     }
 }
