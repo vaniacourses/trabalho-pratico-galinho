@@ -7,19 +7,31 @@ import org.mapstruct.Mapping;
 
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
+import com.galinho.backend.dto.ServicoMecanicoDto;
 import com.galinho.backend.model.Servicos.Servico;
 
 @Mapper(componentModel = "spring")
-public interface MapperServico {
+public interface ServicoMapper {
     
     List<ServicoDto> toServicosDto(List<Servico> servicos);
+    List<ServicoMecanicoDto> toServicosMecanicosDto(List<Servico> servicos);
 
     ServicoDto toServicoDto(Servico servico);
 
     @Mapping(target = "mecanicos", ignore = true)
+    @Mapping(target = "conjuntoTarefas", ignore = true)
+    @Mapping(target = "produtosUsados", ignore = true)
     Servico toServico(ServicoDto servicoDto);
 
     @Mapping(target = "mecanicos", ignore = true)
+    @Mapping(target = "conjuntoTarefas", ignore = true)
+    @Mapping(target = "produtosUsados", ignore = true)
     Servico toServico(ServicoCreate servicoCreate);
+    
+
+    Servico toServico(ServicoMecanicoDto servicoMecanicoDto);
+    ServicoMecanicoDto toServicoMecanicoDto(Servico servico);
+
+
 }
 
