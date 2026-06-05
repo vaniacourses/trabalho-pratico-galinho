@@ -1,21 +1,19 @@
 package com.galinho.backend.utils;
 
 public enum Role {
-    GESTOR,
-    CAIXA,
-    GERENTE,
-    MECANICO,
-    CLIENTE
-}
+    CAIXA("caixa"),
+    CLIENTE("cliente"),
+    GERENTE("gerente"),
+    GESTOR_ESTOQUE("gestor_estoque"),
+    MECANICO("mecanico");
 
-/*
-public enum Role {
-    GESTOR,
-    BOX,
-    GERENTEY,
-    MECANICOW,
-    CLIENTE,
-    ELETRIKMECANIKAL,
-    OK_ALRIGH
+    private String role;
+
+    Role(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
 }
-*/

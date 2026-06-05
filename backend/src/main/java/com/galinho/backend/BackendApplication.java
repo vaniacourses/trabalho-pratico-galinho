@@ -3,10 +3,17 @@ package com.galinho.backend;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.galinho.backend.model.Usuarios.*;
+import com.galinho.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.galinho.backend.model.Financeiro.HistoricoFinanceiro;
 import com.galinho.backend.model.Servicos.HistoricoServico;
@@ -25,7 +32,11 @@ import com.galinho.backend.repository.VeiculoRepository;
 public class BackendApplication implements CommandLineRunner {
 
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
 	private ServicoRepository servicoRepository;
+	
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 	@Autowired
@@ -39,27 +50,69 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//Testando 
-		Cliente cliente1 = new Cliente("lucas");
-		Cliente cliente2 = new Cliente("joao");
-		Veiculo veiculo1 = new Veiculo("abc2034", cliente1);
-		Veiculo veiculo2 = new Veiculo("def2034", cliente2);
-		Servico servico1 = new Servico("teste", new BigDecimal(10000), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
-		Servico servico2 = new Servico("teste2", new BigDecimal(10002), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
-		Servico servico3 = new Servico("teste3", new BigDecimal(10004), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo2);
-		//HistoricoServico hist1 = new HistoricoServico(servico1.getStatus(), servico1.getOrcamento(), servico1);
-        //HistoricoServico hist2 = new HistoricoServico(servico2.getStatus(), servico2.getOrcamento(), servico2);
-        //HistoricoServico hist3 = new HistoricoServico(servico3.getStatus(), servico3.getOrcamento(), servico3);
-		TarefaEntity tarefa1 = new TarefaSimples(LocalDateTime.now(), new BigDecimal(50), "Tarefa base 1");
+		// TODO Auto-generated method stub
+    
+    	//Testando
+		Cliente cliente = new Cliente("cliente@gmail.com",
+				new BCryptPasswordEncoder().encode("123"),
+				"Cliente 1",
+				"12345678920",
+				"22997512135",
+				"rua tal");
+		usuarioRepository.save(cliente);
+    
+    	Veiculo veiculo1 = new Veiculo("abc2034", cliente);
+    
+		cliente = new Cliente("cliente2@gmail.com",
+					new BCryptPasswordEncoder().encode("123"),
+					"Cliente 2",
+					"12345678910",
+					"22997512135",
+					"rua tal");
+		usuarioRepository.save(cliente);
+    
+    	Veiculo veiculo2 = new Veiculo("def2034", cliente);
+
+		Usuario usuario = new Caixa("caixa@gmail.com",
+				new BCryptPasswordEncoder().encode("123"),
+				"Caixa",
+				"12345678911",
+				"21997512135");
+		usuarioRepository.save(usuario);
+
+		usuario = new Gerente("gerente@gmail.com",
+				new BCryptPasswordEncoder().encode("123"),
+				"Gerente",
+				"12345678912",
+				"23997512135");
+		usuarioRepository.save(usuario);
+
+		usuario = new GestorDeEstoque("gestor@gmail.com",
+				new BCryptPasswordEncoder().encode("123"),
+				"Gestor",
+				"12345678913",
+				"24997512135");
+		usuarioRepository.save(usuario);
+    
+    	usuario = new Mecanico("mecanico@gmail.com",
+				new BCryptPasswordEncoder().encode("123"),
+				"Mecanico",
+				"12345678914",
+				"25997512135",
+				List.of("habilidade 1","habilidade 2"));
+		usuarioRepository.save(usuario);
+		
+		Servico servico1 = new Servico("teste", 10000, null, veiculo1);
+		Servico servico2 = new Servico("teste2", 10002, null, veiculo1);
+		Servico servico3 = new Servico("teste3", 10004, null, veiculo2);
+    
+    TarefaEntity tarefa1 = new TarefaSimples(LocalDateTime.now(), new BigDecimal(50), "Tarefa base 1");
 		TarefaEntity tarefa1_1 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1", tarefa1);
 		TarefaEntity tarefa1_2 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1_1", tarefa1_1);;
 		//servico1.setConjuntoTarefas(tarefa1);
 		//servico1.setConjuntoTarefas(tarefa1_1);
 		servico1.setConjuntoTarefas(tarefa1_2);
 		
-
-		clienteRepository.save(cliente2);
-		clienteRepository.save(cliente1);
 		veiculoRepository.save(veiculo1);
 		veiculoRepository.save(veiculo2);
 		servicoRepository.save(servico1);
