@@ -1,5 +1,6 @@
 package com.galinho.backend.model.Servicos;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
