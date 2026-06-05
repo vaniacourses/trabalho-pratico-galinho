@@ -6,13 +6,13 @@ import com.galinho.backend.model.Usuarios.Cliente;
 import jakarta.validation.constraints.Null;
 
 
-public class VeiculoCreate {
-    @Null Long Id;
-    String placa;
-    String marca;
-    String modelo;
-    Integer ano;
-    String cor;
-    Servico servico;
-    Cliente cliente;
+public record VeiculoCreate (@Null Long Id,
+    String placa,
+    String marca,
+    String modelo,
+    Integer ano,
+    String cor,
+    Servico servico,
+    Cliente cliente) {
+    
 }

@@ -14,12 +14,12 @@ public interface MapperVeiculo {
 
     List<VeiculoDto> toVeiculosDto(List<Veiculo> veiculos);
 
-    @Mapping(target = "servicos", ignore = true)
+    //@Mapping(target = "servicos", ignore = true)
     VeiculoDto toVeiculoDto(Veiculo veiculo);
 
-    @Mapping(target = "servicos", ignore = true)
+    //@Mapping(target = "servicos", ignore = true)
     Veiculo toVeiculo(VeiculoCreate veiculoCreate);
 
-    @Mapping(target = "servicos", ignore = true)
+    //@Mapping(target = "servicos", ignore = true)
     Veiculo toVeiculo(VeiculoDto veiculoDto);
 }

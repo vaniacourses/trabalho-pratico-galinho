@@ -45,7 +45,7 @@ public class Servico {
     @JoinColumn(name = "veiculo_placa")
     private Veiculo veiculo;
 
-    public Servico(String descricao, int Orcamento, Date dataPrevisao, Veiculo veiculo){
+    public Servico(String descricao, BigDecimal Orcamento, Date dataPrevisao, Veiculo veiculo){
         this.descricao = descricao;
         this.Orcamento = Orcamento;
         this.veiculo = veiculo;
