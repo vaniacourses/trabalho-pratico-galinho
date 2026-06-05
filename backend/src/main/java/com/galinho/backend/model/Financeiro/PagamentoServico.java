@@ -1,6 +1,7 @@
 package com.galinho.backend.model.Financeiro;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.galinho.backend.model.Servicos.Servico;
@@ -16,13 +17,14 @@ import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) // diz pra JPA que essa classe tem fii e faz o join 
-public abstract class PagamentoServico {
+public abstract class PagamentoServico { //classe talvez
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
