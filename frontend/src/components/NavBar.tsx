@@ -33,6 +33,14 @@ const NavBar = () => {
               <i className="bi bi-box-arrow-in-right me-1"></i>
               Entrar
             </NavLink>
+            <NavLink className="text-gray-700 hover:text-black" to="/servicos">
+              <i className="bi bi-card-checklist me-1"></i>
+              Serviços
+            </NavLink>
+            <NavLink className="text-gray-700 hover:text-black" to="/servicosEmProcesso">
+              <i className="bi bi-card-list me-1"></i>
+              ServiçosEmProcesso
+            </NavLink>
           </div>
 
           <button

@@ -3,6 +3,8 @@ package com.galinho.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
+import com.galinho.backend.dto.ServicoMecanicoDto;
 import com.galinho.backend.service.ServicoService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/servicos")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ServicoController {
     @Autowired
     private ServicoService servicoService;
@@ -28,8 +32,13 @@ public class ServicoController {
         return servicoService.recuperarServicos();
     }
 
+    @GetMapping("EmProcesso")
+    public List<ServicoDto> recuperarServicosEmProcesso(){
+        return servicoService.recuperarServicosEmProcesso();
+    }
+
     @GetMapping("{idServico}")
-    public ServicoDto recuperarServicos(@PathVariable("idServico") long id){
+    public ServicoDto recuperarServico(@PathVariable("idServico") long id){
         return servicoService.recuperarServico(id);
     }
 
@@ -53,4 +62,24 @@ public class ServicoController {
         return servicoService.cadastrarServico(servicoCreate);
     }
 
+    @DeleteMapping("{idServico}")
+    public void deletarServico(@PathVariable("idServico") long id){
+        servicoService.deletarServico(id);
+    }
+
+    //MECANICOS
+    @GetMapping("mecanico")
+    public List<ServicoMecanicoDto> recuperarServicosMecanicos(){
+        return servicoService.recuperarServicosMecanicos();
+    }
+
+    @GetMapping("mecanico/EmProcesso")
+    public List<ServicoMecanicoDto> recuperarServicosMecanicosEmProcesso(){
+        return servicoService.recuperarServicosMecanicosEmProcesso();
+    }
+
+    @GetMapping("mecanico/{idServico}")
+    public ServicoMecanicoDto recuperarServicoMecanico(@PathVariable("idServico") long id){
+        return servicoService.recuperarServicoMecanico(id);
+    }
 }
