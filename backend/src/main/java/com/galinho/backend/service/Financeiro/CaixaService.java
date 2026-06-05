@@ -16,7 +16,7 @@ import com.galinho.backend.repository.Financeiro.FluxoFinanceiroRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class FinancerioCrudService {
+public class CaixaService {
     @Autowired
     private FluxoFinanceiroRepository fluxoRepository;
 

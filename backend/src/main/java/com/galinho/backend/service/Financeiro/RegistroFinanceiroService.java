@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.galinho.backend.dto.Financeiro.FluxoFinanceiroCreate;
+
 import com.galinho.backend.dto.Financeiro.FluxoFinanceiroDto;
 import com.galinho.backend.mapper.Financeiro.FinanceiroMapper;
 import com.galinho.backend.model.Financeiro.FluxoFinanceiro;
@@ -18,7 +18,7 @@ import com.galinho.backend.utils.TipoMovimentacao;
 import jakarta.transaction.Transactional;
 
 @Service
-public class FluxoFinanceiroService {
+public class RegistroFinanceiroService {
     
     @Autowired
     private FluxoFinanceiroRepository fluxoRepository;
@@ -65,5 +65,4 @@ public class FluxoFinanceiroService {
                 .map(financeiroMapper::toFluxoFinanceiroDTO)
                 .toList();
     }
-
 }

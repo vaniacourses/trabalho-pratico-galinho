@@ -1,5 +1,7 @@
 package com.galinho.backend.service.Financeiro;
 
+
+
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,7 @@ import com.galinho.backend.repository.Financeiro.PagamentoServicoRepository;
 import com.galinho.backend.factory.Financeiro.*;
 
 @Service
-public class PagamentoService {
+public class ProcessarPagamentoService {
 
     @Autowired
     private PagamentoServicoRepository pagamentoRepository;

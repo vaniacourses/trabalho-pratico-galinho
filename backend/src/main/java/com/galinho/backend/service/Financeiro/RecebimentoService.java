@@ -18,15 +18,15 @@ import com.galinho.backend.repository.ServicoRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class FinanceiroService { 
+public class RecebimentoService { 
     @Autowired
     private FinanceiroMapper financeiroMapper;
     
     @Autowired
-    private FluxoFinanceiroService fluxoService; 
+    private RegistroFinanceiroService registroService; 
     
     @Autowired
-    private PagamentoService pagamentoService;
+    private ProcessarPagamentoService pagamentoService;
     
     @Autowired
     private ServicoRepository servicoRepository; 
@@ -44,7 +44,7 @@ public class FinanceiroService {
     public PagamentoDto registrarPagamentoDinheiro(Long idServico, PagamentoDinheiroCreate dto){ 
         Servico servico = buscarServico(idServico);
         PagamentoDinheiro dinheiro = pagamentoService.registrarPagamentoDinheiro(servico, dto);
-        fluxoService.registrarEntradaDePagamento(dinheiro, "DINHEIRO", dto.titulo());
+        registroService.registrarEntradaDePagamento(dinheiro, "DINHEIRO", dto.titulo());
         
         return financeiroMapper.toPagamentoDto(dinheiro);
     }
@@ -53,7 +53,7 @@ public class FinanceiroService {
     public PagamentoDto registrarPagamentoPix(Long idServico, PagamentoPixCreate dto){
         Servico servico = buscarServico(idServico);
         PagamentoPix pix = pagamentoService.registrarPagamentoPix(servico, dto);      
-        fluxoService.registrarEntradaDePagamento(pix, "PIX", dto.titulo());      
+        registroService.registrarEntradaDePagamento(pix, "PIX", dto.titulo());      
         
         return financeiroMapper.toPagamentoDto(pix);
     }
@@ -62,7 +62,7 @@ public class FinanceiroService {
     public PagamentoDto registrarPagamentoCartao(Long idServico, PagamentoCartaoCreate dto){
         Servico servico = buscarServico(idServico);
         PagamentoCartao cartao = pagamentoService.registrarPagamentoCartao(servico, dto);
-        fluxoService.registrarEntradaDePagamento(cartao, "CARTAO", dto.titulo());
+        registroService.registrarEntradaDePagamento(cartao, "CARTAO", dto.titulo());
         
         return financeiroMapper.toPagamentoDto(cartao);
     }
