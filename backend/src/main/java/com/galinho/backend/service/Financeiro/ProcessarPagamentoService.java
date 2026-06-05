@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.galinho.backend.dto.Financeiro.*;
+import com.galinho.backend.factories.Financeiro.*;
 import com.galinho.backend.model.Financeiro.*;
 import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.repository.Financeiro.PagamentoServicoRepository;
-import com.galinho.backend.factory.Financeiro.*;
 
 @Service
 public class ProcessarPagamentoService {

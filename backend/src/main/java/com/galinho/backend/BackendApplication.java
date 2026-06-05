@@ -24,11 +24,12 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
 	private ServicoRepository servicoRepository;
+	
 	@Autowired
 	private VeiculoRepository veiculoRepository;
-	@Autowired
-	private ClienteRepository clienteRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
@@ -38,28 +39,28 @@ public class BackendApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
     
-    //Testando
-		Usuario usuario = new Cliente("cliente@gmail.com",
+    	//Testando
+		Cliente cliente = new Cliente("cliente@gmail.com",
 				new BCryptPasswordEncoder().encode("123"),
 				"Cliente 1",
 				"12345678920",
 				"22997512135",
 				"rua tal");
-		usuarioRepository.save(usuario);
+		usuarioRepository.save(cliente);
     
-    Veiculo veiculo1 = new Veiculo("abc2034", usuario);
+    	Veiculo veiculo1 = new Veiculo("abc2034", cliente);
     
-    usuario = new Cliente("cliente2@gmail.com",
-				new BCryptPasswordEncoder().encode("123"),
-				"Cliente 2",
-				"12345678910",
-				"22997512135",
-				"rua tal");
-		usuarioRepository.save(usuario);
+		cliente = new Cliente("cliente2@gmail.com",
+					new BCryptPasswordEncoder().encode("123"),
+					"Cliente 2",
+					"12345678910",
+					"22997512135",
+					"rua tal");
+		usuarioRepository.save(cliente);
     
-    Veiculo veiculo2 = new Veiculo("def2034", usuario);
+    	Veiculo veiculo2 = new Veiculo("def2034", cliente);
 
-		usuario = new Caixa("caixa@gmail.com",
+		Usuario usuario = new Caixa("caixa@gmail.com",
 				new BCryptPasswordEncoder().encode("123"),
 				"Caixa",
 				"12345678911",
@@ -80,7 +81,7 @@ public class BackendApplication implements CommandLineRunner {
 				"24997512135");
 		usuarioRepository.save(usuario);
     
-    usuario = new Mecanico("mecanico@gmail.com",
+    	usuario = new Mecanico("mecanico@gmail.com",
 				new BCryptPasswordEncoder().encode("123"),
 				"Mecanico",
 				"12345678914",

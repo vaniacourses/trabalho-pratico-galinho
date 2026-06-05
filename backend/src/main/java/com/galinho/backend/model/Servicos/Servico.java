@@ -35,7 +35,7 @@ public class Servico {
     private Date dataFim;
     private Date dataPrevisao;
     private String descricao;
-    private BigDecimal Orcamento;
+    private BigDecimal orcamento;
     
     //@OneToOne
     //private PagamentoServico pagamento;
@@ -45,9 +45,9 @@ public class Servico {
     @JoinColumn(name = "veiculo_placa")
     private Veiculo veiculo;
 
-    public Servico(String descricao, int Orcamento, Date dataPrevisao, Veiculo veiculo){
+    public Servico(String descricao, BigDecimal orcamento, Date dataPrevisao, Veiculo veiculo){
         this.descricao = descricao;
-        this.Orcamento = Orcamento;
+        this.orcamento = orcamento;
         this.veiculo = veiculo;
         dataInicio = new Date();
         this.dataPrevisao = dataPrevisao;
