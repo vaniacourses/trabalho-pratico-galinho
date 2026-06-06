@@ -39,18 +39,15 @@ public class BackendApplication implements CommandLineRunner {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
-	
 	@Autowired
 	private VeiculoRepository veiculoRepository;
+
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
 	@Autowired
 	private HistoricoServicoRepository historicoServicoRepository;
 
