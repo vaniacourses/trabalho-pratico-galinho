@@ -41,6 +41,10 @@ const NavBar = () => {
               <i className="bi bi-card-list me-1"></i>
               ServiçosEmProcesso
             </NavLink>
+            <NavLink className="text-gray-700 hover:text-black" to="/loteproduto">
+              <i className="bi bi-card-list me-1"></i>
+              ServiçosEmProcesso
+            </NavLink>
           </div>
 
           <button

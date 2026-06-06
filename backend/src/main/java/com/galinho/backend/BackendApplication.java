@@ -2,30 +2,29 @@ package com.galinho.backend;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import com.galinho.backend.model.Usuarios.*;
-import com.galinho.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.galinho.backend.model.Financeiro.HistoricoFinanceiro;
-import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
-import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaAdicional;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaSimples;
+import com.galinho.backend.model.Servicos.Veiculo;
+import com.galinho.backend.model.Usuarios.Caixa;
 import com.galinho.backend.model.Usuarios.Cliente;
+import com.galinho.backend.model.Usuarios.Gerente;
+import com.galinho.backend.model.Usuarios.GestorDeEstoque;
+import com.galinho.backend.model.Usuarios.Mecanico;
+import com.galinho.backend.model.Usuarios.Usuario;
 import com.galinho.backend.repository.ClienteRepository;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
+import com.galinho.backend.repository.UsuarioRepository;
 import com.galinho.backend.repository.VeiculoRepository;
 
 @SpringBootApplication
@@ -102,9 +101,9 @@ public class BackendApplication implements CommandLineRunner {
 				List.of("habilidade 1","habilidade 2"));
 		usuarioRepository.save(usuario);
 		
-		Servico servico1 = new Servico("teste", 10000, null, veiculo1);
-		Servico servico2 = new Servico("teste2", 10002, null, veiculo1);
-		Servico servico3 = new Servico("teste3", 10004, null, veiculo2);
+		Servico servico1 = new Servico("teste", new BigDecimal(10000), null, veiculo1);
+		Servico servico2 = new Servico("teste2", new BigDecimal(10002), null, veiculo1);
+		Servico servico3 = new Servico("teste3", new BigDecimal(10004), null, veiculo2);
     
     TarefaEntity tarefa1 = new TarefaSimples(LocalDateTime.now(), new BigDecimal(50), "Tarefa base 1");
 		TarefaEntity tarefa1_1 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1", tarefa1);
