@@ -1,16 +1,16 @@
-package com.galinho.backend.service;
+package com.galinho.backend.service.Estoque;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.galinho.backend.dto.FornecedorCreate;
-import com.galinho.backend.dto.FornecedorDto;
+import com.galinho.backend.dto.Estoque.FornecedorCreate;
+import com.galinho.backend.dto.Estoque.FornecedorDto;
 import com.galinho.backend.exception.EntidadeNaoEncontradaException;
-import com.galinho.backend.mapper.MapperFornecedor;
+import com.galinho.backend.mapper.Estoque.FornecedorMapper;
 import com.galinho.backend.model.Estoque.Fornecedor;
-import com.galinho.backend.repository.FornecedorRepository;
+import com.galinho.backend.repository.Estoque.FornecedorRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -20,7 +20,7 @@ public class FornecedorService {
     private FornecedorRepository fornecedorRepository;
 
     @Autowired
-    private MapperFornecedor mapperFornecedor;
+    private FornecedorMapper mapperFornecedor;
 
     public List<FornecedorDto> recuperarFornecedores(){
         List<Fornecedor> fornecedores = fornecedorRepository.recuperarFornecedores();

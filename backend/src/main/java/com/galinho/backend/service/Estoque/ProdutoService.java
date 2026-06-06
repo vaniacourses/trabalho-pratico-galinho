@@ -1,16 +1,16 @@
-package com.galinho.backend.service;
+package com.galinho.backend.service.Estoque;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.galinho.backend.dto.ProdutoCreate;
-import com.galinho.backend.dto.ProdutoDto;
+import com.galinho.backend.dto.Estoque.ProdutoCreate;
+import com.galinho.backend.dto.Estoque.ProdutoDto;
 import com.galinho.backend.exception.EntidadeNaoEncontradaException;
-import com.galinho.backend.mapper.MapperProduto;
+import com.galinho.backend.mapper.Estoque.ProdutoMapper;
 import com.galinho.backend.model.Estoque.Produto;
-import com.galinho.backend.repository.ProdutoRepository;
+import com.galinho.backend.repository.Estoque.ProdutoRepository;
 
 @Service
 public class ProdutoService {
@@ -18,7 +18,7 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    private MapperProduto mapperProduto;
+    private ProdutoMapper mapperProduto;
 
     public List<ProdutoDto> recuperarProdutos() {
         List<Produto> produtos = produtoRepository.recuperarProdutos();

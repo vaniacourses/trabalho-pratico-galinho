@@ -18,7 +18,7 @@ const NavBar = () => {
       <div className="mx-3 md:mx-10 lg:mx-20">
         <div className="flex justify-between">
           <div className="flex items-center space-x-4">
-            <NavLink to="/" onClick={() => setIsOpen(false)}>
+            <NavLink className="me-10" to="/" onClick={() => setIsOpen(false)}>
               <img src={galinho} width="45px" />
             </NavLink>
             <NavLink
@@ -29,17 +29,20 @@ const NavBar = () => {
               <i className="bi bi-house me-1"></i>
               Home
             </NavLink>
-            <NavLink className="text-gray-700 hover:text-black" to="/login">
-              <i className="bi bi-box-arrow-in-right me-1"></i>
-              Entrar
-            </NavLink>
             <NavLink className="text-gray-700 hover:text-black" to="/servicos">
               <i className="bi bi-card-checklist me-1"></i>
               Serviços
             </NavLink>
             <NavLink className="text-gray-700 hover:text-black" to="/servicosEmProcesso">
               <i className="bi bi-card-list me-1"></i>
-              ServiçosEmProcesso
+              Serviços Em Processo
+            </NavLink>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <NavLink className="text-gray-700 hover:text-black" to="/login">
+              <i className="bi bi-box-arrow-in-right me-1"></i>
+              Entrar
             </NavLink>
             <NavLink className="text-gray-700 hover:text-black" to="/loteproduto">
               <i className="bi bi-card-list me-1"></i>

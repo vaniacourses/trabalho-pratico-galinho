@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.galinho.backend.dto.FornecedorCreate;
-import com.galinho.backend.dto.FornecedorDto;
-import com.galinho.backend.service.FornecedorService;
+import com.galinho.backend.dto.Estoque.FornecedorCreate;
+import com.galinho.backend.dto.Estoque.FornecedorDto;
+import com.galinho.backend.service.Estoque.FornecedorService;
 
 @RestController
 @RequestMapping("/fornecedores")

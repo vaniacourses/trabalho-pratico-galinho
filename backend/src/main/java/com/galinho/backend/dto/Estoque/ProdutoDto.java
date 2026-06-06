@@ -1,4 +1,4 @@
-package com.galinho.backend.dto;
+package com.galinho.backend.dto.Estoque;
 
 public record ProdutoDto(
     Long codigo,
@@ -7,7 +7,7 @@ public record ProdutoDto(
     Double preco,
     Integer quantidadeMaxima,
     Integer quantidadeMinima,
-    FornecedorDto fornecedor
+    FornecedorDto fornecedorDto
 ) {
     
 }

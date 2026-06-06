@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.galinho.backend.dto.ProdutoCreate;
-import com.galinho.backend.dto.ProdutoDto;
-import com.galinho.backend.service.ProdutoService;
+import com.galinho.backend.dto.Estoque.ProdutoCreate;
+import com.galinho.backend.dto.Estoque.ProdutoDto;
+import com.galinho.backend.service.Estoque.ProdutoService;
 
 @RestController
 @RequestMapping("/produtos")

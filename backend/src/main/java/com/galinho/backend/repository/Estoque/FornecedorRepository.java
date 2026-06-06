@@ -1,4 +1,4 @@
-package com.galinho.backend.repository;
+package com.galinho.backend.repository.Estoque;
 
 import java.util.List;
 
