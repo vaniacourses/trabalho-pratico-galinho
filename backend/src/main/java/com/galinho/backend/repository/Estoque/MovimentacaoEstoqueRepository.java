@@ -11,8 +11,7 @@ import com.galinho.backend.model.Estoque.MovimentacaoEstoque;
 public interface MovimentacaoEstoqueRepository extends JpaRepository<MovimentacaoEstoque, Long>{
     @Query("""
         select m from MovimentacaoEstoque m 
-        left join fetch m.produto
-        left join fetch m.fornecedor
+        left join fetch m.lote
         order by m.id
     """) 
     List<MovimentacaoEstoque> recuperarMovimentacoes();    

@@ -3,6 +3,7 @@ package com.galinho.backend.service.Estoque;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.galinho.backend.dto.Estoque.LoteProdutoCreate;
 import com.galinho.backend.dto.Estoque.LoteProdutoDto;
@@ -11,6 +12,7 @@ import com.galinho.backend.mapper.Estoque.LoteProdutoMapper;
 import com.galinho.backend.model.Estoque.LoteProduto;
 import com.galinho.backend.repository.Estoque.LoteProdutoRepository;
 
+@Service
 public class LoteProdutoService {
     @Autowired
     private LoteProdutoRepository loteProdutoRepository;

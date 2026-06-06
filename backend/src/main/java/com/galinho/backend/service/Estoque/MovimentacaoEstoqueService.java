@@ -3,6 +3,7 @@ package com.galinho.backend.service.Estoque;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.galinho.backend.dto.Estoque.MovimentacaoEstoqueCreate;
 import com.galinho.backend.dto.Estoque.MovimentacaoEstoqueDto;
@@ -11,6 +12,7 @@ import com.galinho.backend.mapper.Estoque.MovimentacaoEstoqueMapper;
 import com.galinho.backend.model.Estoque.MovimentacaoEstoque;
 import com.galinho.backend.repository.Estoque.MovimentacaoEstoqueRepository;
 
+@Service
 public class MovimentacaoEstoqueService {
     @Autowired
     private MovimentacaoEstoqueRepository movimentacaoEstoqueRepository;
