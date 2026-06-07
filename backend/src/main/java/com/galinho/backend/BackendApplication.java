@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 
 import com.galinho.backend.model.Usuarios.*;
 import com.galinho.backend.repository.UsuarioRepository;
-import com.galinho.backend.model.Usuarios.*;
-import com.galinho.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,10 +15,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
@@ -35,10 +29,6 @@ import com.galinho.backend.repository.VeiculoRepository;
 
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
-
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
