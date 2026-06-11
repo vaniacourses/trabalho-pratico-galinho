@@ -21,7 +21,7 @@ import com.galinho.backend.dto.Financeiro.PagamentoCartaoCreate;
 import com.galinho.backend.dto.Financeiro.PagamentoDinheiroCreate;
 import com.galinho.backend.dto.Financeiro.PagamentoDto;
 import com.galinho.backend.dto.Financeiro.PagamentoPixCreate;
-import com.galinho.backend.service.Financeiro.CaixaService;
+import com.galinho.backend.service.Financeiro.FluxoService;
 import com.galinho.backend.service.Financeiro.RecebimentoService;
 import com.galinho.backend.service.Financeiro.RegistroFinanceiroService;
 
@@ -35,7 +35,7 @@ public class FinanceiroController{
     RecebimentoService recebimentoService;
 
     @Autowired
-    CaixaService caixaService;
+    FluxoService caixaService;
 
     @Autowired
     RegistroFinanceiroService registroService;

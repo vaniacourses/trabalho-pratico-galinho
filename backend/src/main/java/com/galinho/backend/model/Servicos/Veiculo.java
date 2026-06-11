@@ -50,4 +50,9 @@ public class Veiculo {
         this.ano = ano;
         this.cor = cor;
     }
+
+    public Veiculo orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+    }
 }

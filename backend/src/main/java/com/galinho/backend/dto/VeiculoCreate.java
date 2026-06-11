@@ -13,6 +13,6 @@ public record VeiculoCreate (@Null Long Id,
     Integer ano,
     String cor,
     Servico servico,
-    Cliente cliente) {
+    Long Idcliente) {
     
 }
