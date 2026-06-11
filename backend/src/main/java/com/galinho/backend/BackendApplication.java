@@ -36,12 +36,11 @@ public class BackendApplication implements CommandLineRunner {
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
+	
 	@Autowired
 	private VeiculoRepository veiculoRepository;
-
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
 	@Autowired
 	private HistoricoServicoRepository historicoServicoRepository;
 
@@ -51,7 +50,6 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
     
     	//Testando
 		Cliente cliente = new Cliente("cliente@gmail.com",
@@ -62,7 +60,7 @@ public class BackendApplication implements CommandLineRunner {
 				"rua tal");
 		usuarioRepository.save(cliente);
     
-    	Veiculo veiculo1 = new Veiculo("abc2034", cliente, null, null, null, null);
+    	Veiculo veiculo1 = new Veiculo("abc2034", cliente);
     
 		cliente = new Cliente("cliente2@gmail.com",
 					new BCryptPasswordEncoder().encode("123"),
@@ -72,7 +70,7 @@ public class BackendApplication implements CommandLineRunner {
 					"rua tal");
 		usuarioRepository.save(cliente);
     
-    	Veiculo veiculo2 = new Veiculo("def2034", cliente, null, null, null, null);
+    	Veiculo veiculo2 = new Veiculo("def2034", cliente);
 
 		Usuario usuario = new Caixa("caixa@gmail.com",
 				new BCryptPasswordEncoder().encode("123"),
@@ -116,23 +114,6 @@ public class BackendApplication implements CommandLineRunner {
 		
 		veiculoRepository.save(veiculo1);
 		veiculoRepository.save(veiculo2);
-
-		// Usando setters para garantir que os tipos (como o BigDecimal) estão corretos
-		/*Servico servico1 = new Servico();
-		servico1.setDescricao("Troca de Óleo");
-		servico1.setOrcamento(new java.math.BigDecimal("350.00"));
-		servico1.setVeiculo(veiculo1);
-
-		Servico servico2 = new Servico();
-		servico2.setDescricao("Revisão Completa");
-		servico2.setOrcamento(new java.math.BigDecimal("1200.00"));
-		servico2.setVeiculo(veiculo1);
-
-		Servico servico3 = new Servico();
-		servico3.setDescricao("Troca de Pneus");
-		servico3.setOrcamento(new java.math.BigDecimal("800.00"));
-		servico3.setVeiculo(veiculo2);*/
-
 		servicoRepository.save(servico1);
 		servicoRepository.save(servico2);
 		servicoRepository.save(servico3);
@@ -142,4 +123,4 @@ public class BackendApplication implements CommandLineRunner {
 
 
 	}
-}	
+}
