@@ -75,7 +75,7 @@ public class ServicoService {
         return mapperServico.toServicoDto(servico);
     }
 
-    /*public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
+    public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
         Servico servico = mapperServico.toServico(servicoCreate);
         // Veiculo veiculo = veiculoRepository.findById(servicoCreate.veiculoId())
         //     .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
@@ -87,7 +87,7 @@ public class ServicoService {
         servico = servicoRepository.save(servico);
         cadastrarHistoricoServico(servico);
         return mapperServico.toServicoDto(servico);
-    }*/
+    }
 
     public void deletarServico(long id){
         servicoRepository.deleteById(id);;
