@@ -51,3 +51,4 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
     """)        
     Veiculo recuperarVeiculoDeCliente(@Param("idVeiculo") Long idVeiculo, @Param("idCliente") Long idCliente);
 }
+

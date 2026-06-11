@@ -6,4 +6,5 @@ import java.math.BigDecimal;
 public interface Tarefa {
     public BigDecimal calcularValor();
     public String getDescricao();
+    public String getDescricaoTotal();
 }

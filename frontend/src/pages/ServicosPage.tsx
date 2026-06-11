@@ -1,10 +1,13 @@
 
 // import useRemoverProdutoOtimista from "../hooks/useRemoverProdutoOtimista";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import TabelaDeServicos from "../components/TabelaDeServicos";
 import useRecuperarServicos from "../hooks/useRecuperarServicos";
 import useRemoverServicoOtimista from "../hooks/useRemoverServicoOtimista";
+import useServicoStore from "../store/ServicoStore";
+import type { ServicoUpdate } from "../interfaces/ServicoUpdate";
+import type { Servico } from "../interfaces/Servico";
 
 const ServicosPage = () => {
   const {
@@ -12,6 +15,9 @@ const ServicosPage = () => {
     isPending: recuperandoservicos,
     error: errorRecuperarservicos,
   } = useRecuperarServicos();
+
+  const setServicoSelecionado = useServicoStore((s) => s.setServicoSelecionado);
+
 
 //   const tratarRemocao = (id: number) => {
 //     removerServico(id);
@@ -40,7 +46,16 @@ const ServicosPage = () => {
       <hr className="mb-4" />
       <TabelaDeServicos servicos={servicos}/>
       <div>
-        <Link className="btn-success px-2 py-1" to={"/cadastrar-servico"}>Cadastrar Novo Serviço</Link>
+        {/* <Link className="btn-success px-2 py-1" to={"/cadastrar-servico"}>Cadastrar Novo Serviço</Link> */}
+        <NavLink
+            to="/cadastrar-servico"
+            onClick={() => setServicoSelecionado({} as Servico)}
+            // disabled={removido}
+            className="btn-success px-2 w-full py-1"
+            type="button"
+          >
+            Cadastrar Novo Serviço
+          </NavLink>
       </div>
     </>
   );
