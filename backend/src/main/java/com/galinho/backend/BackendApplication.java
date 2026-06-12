@@ -60,7 +60,7 @@ public class BackendApplication implements CommandLineRunner {
 				"rua tal");
 		usuarioRepository.save(cliente);
     
-    	Veiculo veiculo1 = new Veiculo("abc2034", cliente);
+    	Veiculo veiculo1 = new Veiculo("abc2034", cliente, null, null, null, null);
     
 		cliente = new Cliente("cliente2@gmail.com",
 					new BCryptPasswordEncoder().encode("123"),
@@ -70,7 +70,7 @@ public class BackendApplication implements CommandLineRunner {
 					"rua tal");
 		usuarioRepository.save(cliente);
     
-    	Veiculo veiculo2 = new Veiculo("def2034", cliente);
+    	Veiculo veiculo2 = new Veiculo("def2034", cliente, null, null, null, null);
 
 		Usuario usuario = new Caixa("caixa@gmail.com",
 				new BCryptPasswordEncoder().encode("123"),
