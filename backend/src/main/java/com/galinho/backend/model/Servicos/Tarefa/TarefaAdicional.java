@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 public class TarefaAdicional extends TarefaDecorator{
 
-    public TarefaAdicional(){};
+    public TarefaAdicional(){}
     
     public TarefaAdicional(LocalDateTime data, BigDecimal valor, String descricao, TarefaEntity decorada){
         super(data, valor, descricao, decorada);
@@ -29,6 +29,7 @@ public class TarefaAdicional extends TarefaDecorator{
         return descricao;
     }
 
+    @Override
     public TarefaEntity getTarefaDecorada() {
         return tarefaDecorada;
     }

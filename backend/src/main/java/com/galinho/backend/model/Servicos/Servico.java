@@ -2,14 +2,11 @@ package com.galinho.backend.model.Servicos;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.galinho.backend.model.Estoque.ProdutoServico;
 import com.galinho.backend.model.Financeiro.PagamentoServico;
-import com.galinho.backend.model.Servicos.Tarefa.Tarefa;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Usuarios.Mecanico;
 import com.galinho.backend.utils.TipoStatus;

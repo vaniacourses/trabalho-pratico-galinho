@@ -21,30 +21,30 @@ import jakarta.validation.Valid;
 @RequestMapping("/loteproduto")
 public class LoteProdutoController {
     @Autowired
-    private LoteProdutoService LoteProdutoService;
+    private LoteProdutoService loteProdutoService;
 
     @GetMapping
     public List<LoteProdutoDto> recuperarLotes(){
-        return LoteProdutoService.recuperarLotes();
+        return loteProdutoService.recuperarLotes();
     }
 
     @GetMapping("{idLote}")
     public LoteProdutoDto recuperarLotePorId(@PathVariable("idLote") long id){
-        return LoteProdutoService.recuperarLotePorId(id);
+        return loteProdutoService.recuperarLotePorId(id);
     }
 
     @GetMapping("/produto/{idProduto}")
     public List<LoteProdutoDto> recuperarLotesPorProduto(@PathVariable("idProduto") long idProduto){
-        return LoteProdutoService.recuperarLotesPorProduto(idProduto);
+        return loteProdutoService.recuperarLotesPorProduto(idProduto);
     }
 
     @PutMapping
     public LoteProdutoDto atualizarLote(@RequestBody LoteProdutoDto loteProdutoDto){
-        return LoteProdutoService.atualizarLote(loteProdutoDto);
+        return loteProdutoService.atualizarLote(loteProdutoDto);
     }
 
     @PostMapping
     public LoteProdutoDto cadastrarLote(@RequestBody @Valid LoteProdutoCreate loteProdutoCreate){
-        return LoteProdutoService.cadastrarLote(loteProdutoCreate);
+        return loteProdutoService.cadastrarLote(loteProdutoCreate);
     }
 }

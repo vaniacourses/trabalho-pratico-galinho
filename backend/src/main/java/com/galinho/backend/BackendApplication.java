@@ -4,34 +4,24 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.galinho.backend.model.Usuarios.*;
-import com.galinho.backend.repository.UsuarioRepository;
-import com.galinho.backend.model.Usuarios.*;
-import com.galinho.backend.repository.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaAdicional;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaSimples;
-import com.galinho.backend.repository.ClienteRepository;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
 import com.galinho.backend.repository.VeiculoRepository;
+import com.galinho.backend.repository.Usuario.ClienteRepository;
+import com.galinho.backend.repository.Usuario.UsuarioRepository;
 
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
@@ -114,11 +104,11 @@ public class BackendApplication implements CommandLineRunner {
 		Servico servico3 = new Servico("teste3", new BigDecimal(10004), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo2);
     
     	TarefaEntity tarefa1 = new TarefaSimples(LocalDateTime.now(), new BigDecimal(50), "Tarefa base 1");
-		TarefaEntity tarefa1_1 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1", tarefa1);
-		TarefaEntity tarefa1_2 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1_1", tarefa1_1);;
+		TarefaEntity tarefa2 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1", tarefa1);
+		TarefaEntity tarefa3 = new TarefaAdicional(LocalDateTime.now(), new BigDecimal(100), "Tarefa cobertura de 1_1", tarefa2);
 		//servico1.setConjuntoTarefas(tarefa1);
 		//servico1.setConjuntoTarefas(tarefa1_1);
-		servico1.setConjuntoTarefas(tarefa1_2);
+		servico1.setConjuntoTarefas(tarefa3);
 		
 		veiculoRepository.save(veiculo1);
 		veiculoRepository.save(veiculo2);

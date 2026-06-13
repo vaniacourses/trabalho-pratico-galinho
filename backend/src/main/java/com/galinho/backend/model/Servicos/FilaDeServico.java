@@ -3,9 +3,6 @@ package com.galinho.backend.model.Servicos;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.galinho.backend.repository.ServicoRepository;
-import com.galinho.backend.utils.TipoStatus;
-
 //Nao faz mtt sentido existir, deixamos em lógica e não implementamos?
 
 public class FilaDeServico {
