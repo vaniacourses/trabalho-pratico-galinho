@@ -30,4 +30,14 @@ public class Fornecedor {
     String endereco;
     @OneToMany(mappedBy = "fornecedor")
     List<Produto> produtos;
+
+    public Fornecedor(String nome, String cnpj, String email, String endereco, List<Produto> produtos) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.endereco = endereco;
+        this.produtos = produtos;
+    }
+
+    
 }

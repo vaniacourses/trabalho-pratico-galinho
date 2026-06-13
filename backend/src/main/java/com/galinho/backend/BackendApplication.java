@@ -102,6 +102,10 @@ public class BackendApplication implements CommandLineRunner {
 				"25997512135",
 				List.of("habilidade 1","habilidade 2"));
 		usuarioRepository.save(usuario);
+
+		//Fornecedor fornecedor1 = new Fornecedor("lucas", "1111111", "teste@gmail.com","lugar ai", null);
+		//Produto produto = new Produto("banana", "descricao", new BigDecimal(10000), 3, 1, fornecedor1 );
+		//LoteProduto loteProduto = new LoteProduto(150, LocalDateTime.of(2010, 10, 10, 10, 30, 0), "LOT-2026-005X", null, null);
 		
 		Servico servico1 = new Servico("teste", new BigDecimal(10000), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
 		Servico servico2 = new Servico("teste2", new BigDecimal(10002), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);

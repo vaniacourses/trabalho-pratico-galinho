@@ -31,4 +31,13 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
     Fornecedor fornecedor;
+
+    public Produto(String nome, String descricao, BigDecimal preco, Integer quantidadeMaxima, Integer quantidadeMinima, Fornecedor fornecedor) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.quantidadeMaxima = quantidadeMaxima;
+        this.quantidadeMinima = quantidadeMinima;
+        this.fornecedor = fornecedor;
+    }
 }
