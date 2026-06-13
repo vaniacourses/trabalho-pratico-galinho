@@ -1,4 +1,4 @@
-package com.galinho.backend.repository;
+package com.galinho.backend.repository.Usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.galinho.backend.model.Usuarios.Mecanico;

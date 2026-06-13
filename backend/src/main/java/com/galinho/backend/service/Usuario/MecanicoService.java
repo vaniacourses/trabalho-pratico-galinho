@@ -6,7 +6,8 @@ import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.factories.Usuario.MecanicoFactory;
 import com.galinho.backend.mapper.Usuario.MecanicoMapper;
 import com.galinho.backend.model.Usuarios.Mecanico;
-import com.galinho.backend.repository.MecanicoRepository;
+import com.galinho.backend.repository.Usuario.MecanicoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
