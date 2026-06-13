@@ -22,6 +22,7 @@ public record ServicoDto(
     BigDecimal orcamento,
     PagamentoServico pagamento,
     Veiculo veiculo
+    //String veiculoPlaca
     //Tarefa conjuntoTarefas, //Faz sentido usuario ver conj de tarefas
     //List<ProdutoServico> produtosUsados
     //Sem mecanicos

@@ -1,4 +1,4 @@
-import ServicoForm from "../components/ServicoFormCreate"
+import ServicoForm from "../components/ServicoForm"
 
 
 const AlterarServicoPage = () => {

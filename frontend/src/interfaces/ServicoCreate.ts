@@ -5,7 +5,7 @@ import type { ProdutoServico } from "./ProdutoServico";
 import type { Tarefa } from "./Tarefa";
 
 export interface ServicoCreate {
-    // id: number;
+    // id?: number;
     status: string;
     dataInicio: string | null;
     // dataFim: Date;

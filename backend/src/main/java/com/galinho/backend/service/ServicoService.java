@@ -18,6 +18,7 @@ import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
 import com.galinho.backend.repository.VeiculoRepository;
+import com.galinho.backend.utils.ServicoComparator;
 
 @Service
 public class ServicoService {
@@ -60,14 +61,17 @@ public class ServicoService {
 
     // Usado em cadastrarServico e atualizarServico
     public void cadastrarHistoricoServico(Servico servico){
-        HistoricoServico hist = new HistoricoServico(servico.getStatus(), servico.getOrcamento(), servico);
+        HistoricoServico hist = new HistoricoServico(servico.getStatus(), servico.getOrcamento(), servico, servico.getDescricao());
         historicoServicoRepository.save(hist);
     }
 
     public ServicoDto atualizarServico(ServicoDto servicoDto){
         Servico servico = mapperServico.toServico(servicoDto);
+        Servico servicoAtual = servicoRepository.findById(servico.getId())
+            .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
+        boolean mudou = ServicoComparator.houveMudanca(servicoAtual, servico);
         servico = servicoRepository.save(servico);
-        cadastrarHistoricoServico(servico);
+        if(mudou){cadastrarHistoricoServico(servico);}
         return mapperServico.toServicoDto(servico);
     }
 

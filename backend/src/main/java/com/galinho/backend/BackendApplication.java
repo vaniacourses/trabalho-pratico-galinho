@@ -4,12 +4,20 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.galinho.backend.model.Usuarios.*;
+import com.galinho.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaAdicional;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
@@ -36,12 +44,11 @@ public class BackendApplication implements CommandLineRunner {
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
+	
 	@Autowired
 	private VeiculoRepository veiculoRepository;
-
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
 	@Autowired
 	private HistoricoServicoRepository historicoServicoRepository;
 
@@ -51,7 +58,6 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
     
     	//Testando
 		Cliente cliente = new Cliente("cliente@gmail.com",
