@@ -1,8 +1,10 @@
 package com.galinho.backend.controller.Financeiro;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.galinho.backend.dto.Financeiro.FluxoFinanceiroCreate;
@@ -99,6 +101,15 @@ public class FinanceiroController{
     public ResponseEntity<List<FluxoFinanceiroDto>> listarEntradas() {
         List<FluxoFinanceiroDto> entradas = registroService.listarFluxosDeEntrada();
         return ResponseEntity.ok(entradas);
+    }
+
+    @GetMapping("/fluxos/periodo")
+    public ResponseEntity<List<FluxoFinanceiroDto>> listarPorPeriodo(
+    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime inicio,
+    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fim) 
+    {
+        List<FluxoFinanceiroDto> fluxos = caixaService.listarFluxosPorPeriodo(inicio, fim);
+        return ResponseEntity.ok(fluxos);
     }
 
     @GetMapping("/fluxos/saidas")

@@ -12,6 +12,7 @@ import com.galinho.backend.mapper.Financeiro.FinanceiroMapper;
 import com.galinho.backend.model.Financeiro.PagamentoCartao;
 import com.galinho.backend.model.Financeiro.PagamentoDinheiro;
 import com.galinho.backend.model.Financeiro.PagamentoPix;
+import com.galinho.backend.model.Financeiro.PagamentoServico;
 import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.repository.ServicoRepository;
 
@@ -40,11 +41,18 @@ public class RecebimentoService {
                 );
     }
 
+   private void pagarServico(Servico servico, PagamentoServico pagamento) {
+        servico.setPagamento(pagamento);
+        servico.setStatus(com.galinho.backend.utils.TipoStatus.CONCLUIDO);
+        servicoRepository.save(servico);
+    }
+
     @Transactional
     public PagamentoDto registrarPagamentoDinheiro(Long idServico, PagamentoDinheiroCreate dto){ 
         Servico servico = buscarServico(idServico);
         PagamentoDinheiro dinheiro = pagamentoService.registrarPagamentoDinheiro(servico, dto);
         registroService.registrarEntradaDePagamento(dinheiro, "DINHEIRO", dto.titulo());
+        pagarServico(servico, dinheiro);
         
         return financeiroMapper.toPagamentoDto(dinheiro);
     }
@@ -53,7 +61,9 @@ public class RecebimentoService {
     public PagamentoDto registrarPagamentoPix(Long idServico, PagamentoPixCreate dto){
         Servico servico = buscarServico(idServico);
         PagamentoPix pix = pagamentoService.registrarPagamentoPix(servico, dto);      
-        registroService.registrarEntradaDePagamento(pix, "PIX", dto.titulo());      
+        registroService.registrarEntradaDePagamento(pix, "PIX", dto.titulo());  
+        pagarServico(servico, pix);
+        
         
         return financeiroMapper.toPagamentoDto(pix);
     }
@@ -63,6 +73,7 @@ public class RecebimentoService {
         Servico servico = buscarServico(idServico);
         PagamentoCartao cartao = pagamentoService.registrarPagamentoCartao(servico, dto);
         registroService.registrarEntradaDePagamento(cartao, "CARTAO", dto.titulo());
+        pagarServico(servico, cartao);
         
         return financeiroMapper.toPagamentoDto(cartao);
     }

@@ -75,19 +75,19 @@ public class ServicoService {
         return mapperServico.toServicoDto(servico);
     }
 
-    public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
-        Servico servico = mapperServico.toServico(servicoCreate);
-        // Veiculo veiculo = veiculoRepository.findById(servicoCreate.veiculoId())
-        //     .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
-        Veiculo veiculo = veiculoRepository.findByPlaca(servicoCreate.veiculoPlaca())
-            .orElseThrow(() -> new RuntimeException(
-            "Veículo com placa " + servicoCreate.veiculoPlaca() + " não encontrado"
-        ));
-        servico.setVeiculo(veiculo);
-        servico = servicoRepository.save(servico);
-        cadastrarHistoricoServico(servico);
-        return mapperServico.toServicoDto(servico);
-    }
+    // public ServicoDto cadastrarServico(ServicoCreate servicoCreate){
+    //     Servico servico = mapperServico.toServico(servicoCreate);
+    //     // Veiculo veiculo = veiculoRepository.findById(servicoCreate.veiculoId())
+    //     //     .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
+    //     Veiculo veiculo = veiculoRepository.findByPlaca(servicoCreate.veiculoPlaca())
+    //         .orElseThrow(() -> new RuntimeException(
+    //         "Veículo com placa " + servicoCreate.veiculoPlaca() + " não encontrado"
+    //     ));
+    //     servico.setVeiculo(veiculo);
+    //     servico = servicoRepository.save(servico);
+    //     cadastrarHistoricoServico(servico);
+    //     return mapperServico.toServicoDto(servico);
+    // }
 
     public void deletarServico(long id){
         servicoRepository.deleteById(id);;

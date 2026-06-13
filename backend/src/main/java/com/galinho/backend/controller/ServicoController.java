@@ -57,10 +57,10 @@ public class ServicoController {
         return servicoService.atualizarServico(servicoDto);
     }
 
-    @PostMapping
-    public ServicoDto cadastrarServico(@RequestBody @Valid ServicoCreate servicoCreate){
-        return servicoService.cadastrarServico(servicoCreate);
-    }
+    // @PostMapping
+    // public ServicoDto cadastrarServico(@RequestBody @Valid ServicoCreate servicoCreate){
+    //     return servicoService.cadastrarServico(servicoCreate);
+    // }
 
     @DeleteMapping("{idServico}")
     public void deletarServico(@PathVariable("idServico") long id){

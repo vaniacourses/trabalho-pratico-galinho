@@ -30,7 +30,14 @@ const NavBar = () => {
               <i className="bi bi-house me-1"></i>
               Home
             </NavLink>
-
+            
+            <NavLink
+              className="hidden text-gray-700 hover:text-black md:block ml-4"
+              to="/financeiro"
+            >
+              <i className="bi bi-cash-coin me-1"></i>
+              Caixa
+            </NavLink>
 
             <div className="relative">
               <button
@@ -40,6 +47,7 @@ const NavBar = () => {
                 <i className="bi bi-card-checklist me-1"></i>
                 Serviços {servicosOpen ? "▲" : "▼"}
               </button>
+              
 
               {servicosOpen && (
                 <div className="absolute left-0 mt-2 w-56 rounded-md border bg-white shadow-lg">
@@ -62,10 +70,11 @@ const NavBar = () => {
                 </div>
               )}
             </div>
-
+            
 
             
           </div>
+          
 
           <div className="flex items-center space-x-4">
             <NavLink className="text-gray-700 hover:text-black" to="/login">
@@ -115,6 +124,15 @@ const NavBar = () => {
             >
               <i className="bi bi-box-arrow-in-right me-1"></i>
               Entrar
+            </NavLink>
+            {/* Adicione antes ou depois do botão Entrar */}
+            <NavLink
+              className="text-gray-700 hover:text-black"
+              to="/financeiro"
+              onClick={() => setIsOpen(false)}
+            >
+              <i className="bi bi-cash-coin me-1"></i>
+              Caixa
             </NavLink>
           </div>
         )}

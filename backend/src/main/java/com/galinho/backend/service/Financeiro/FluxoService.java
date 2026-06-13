@@ -49,6 +49,12 @@ public class FluxoService {
                 .toList();
     }
 
+    public List<FluxoFinanceiroDto> listarFluxosPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+    return fluxoRepository.findByDataBetween(inicio, fim).stream()
+            .map(financeiroMapper::toFluxoFinanceiroDTO)
+            .toList();
+}
+
     @Transactional
     public void deletarFluxo(Long id) {
         if (!fluxoRepository.existsById(id)) {

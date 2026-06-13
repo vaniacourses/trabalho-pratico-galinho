@@ -22,6 +22,7 @@ public class ProcessarPagamentoService {
     @Autowired private PagamentoDinheiroFactory dinheiroFactory;
     @Autowired private PagamentoPixFactory pixFactory;
     @Autowired private PagamentoCartaoFactory cartaoFactory;
+    
 
     public BigDecimal calcularTroco(BigDecimal quantiaRecebida, BigDecimal valorServico) {
         if (quantiaRecebida.compareTo(valorServico) < 0) {

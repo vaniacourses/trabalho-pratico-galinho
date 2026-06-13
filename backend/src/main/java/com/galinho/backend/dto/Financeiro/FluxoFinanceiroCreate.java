@@ -19,8 +19,8 @@ public record FluxoFinanceiroCreate(@Null Long id,
                                 String descricao,
                                 @NotNull(message = "informe se eh ENTRADA ou SAIDA")
                                 TipoMovimentacao tipo,
-                                @NotNull
-                                LocalDateTime data,
+                                //@NotNull
+                                //LocalDateTime data,
                                 @NotBlank(message = "infrome se eh origem ou  destino")
                                 String origemOuDestino) {
 }
