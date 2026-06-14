@@ -1,7 +1,6 @@
 package com.galinho.backend.model.Financeiro;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.galinho.backend.model.Servicos.Servico;
@@ -17,7 +16,6 @@ import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -36,7 +34,7 @@ public abstract class PagamentoServico { //classe talvez
     @JoinColumn(name = "servico_id")
     private Servico servico;
 
-    public PagamentoServico(BigDecimal valorFinal, LocalDateTime dataPagamento) {
+    protected PagamentoServico(BigDecimal valorFinal, LocalDateTime dataPagamento) {
         this.valorFinal = valorFinal;
         this.dataPagamento = dataPagamento;
     }

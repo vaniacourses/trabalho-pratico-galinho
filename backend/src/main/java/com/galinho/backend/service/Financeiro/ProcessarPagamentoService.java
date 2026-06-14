@@ -1,7 +1,5 @@
 package com.galinho.backend.service.Financeiro;
 
-
-
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

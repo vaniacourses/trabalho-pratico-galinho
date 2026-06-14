@@ -1,10 +1,8 @@
-package com.galinho.backend.repository;
+package com.galinho.backend.repository.Usuario;
 
 import com.galinho.backend.model.Usuarios.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 

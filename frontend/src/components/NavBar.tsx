@@ -2,18 +2,15 @@ import { NavLink } from "react-router-dom";
 import galinho from "../assets/galinho.png";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { useState } from "react";
-
-// Modos do Tailwindcss:
-// sm: 640px
-// md: 768px
-// lg: 1024px
-// xl: 1280px
-// 2xl: 1536px
+import useUsuarioStore from "../store/UsuarioStore";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicosOpen, setServicosOpen] = useState(false);
   const [produtosOpen, setProdutosOpen] = useState(false);
+
+  const usuarioLogado = useUsuarioStore((s) => s.usuarioLogado);
+  const roleUsuarioLogado = useUsuarioStore((s) => s.roleUsuarioLogado).toLowerCase();
 
   return (
     <nav className="mb-6 bg-gray-100 py-4">
@@ -85,9 +82,21 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            <NavLink className="text-gray-700 hover:text-black" to={"/" + roleUsuarioLogado + "s/" + usuarioLogado}>
+              <i className="bi bi-person me-1"></i>
+              Meu Perfil
+            </NavLink>
             <NavLink className="text-gray-700 hover:text-black" to="/login">
-              <i className="bi bi-box-arrow-in-right me-1"></i>
-              Entrar
+              {usuarioLogado ? 
+                <>
+                  <i className="bi bi-box-arrow-left me-1"></i>
+                  Sair
+                </> : 
+                <>
+                  <i className="bi bi-box-arrow-in-right me-1"></i>
+                  Entrar
+                </>
+              }
             </NavLink>
           </div>
 
@@ -125,13 +134,25 @@ const NavBar = () => {
               <i className="bi bi-house me-1"></i>
               Home
             </NavLink>
+            <NavLink className="text-gray-700 hover:text-black" to={"/" + roleUsuarioLogado + "s/" + usuarioLogado}>
+              <i className="bi bi-person me-1"></i>
+              Meu Perfil
+            </NavLink>
             <NavLink
               className="text-gray-700 hover:text-black"
               to="/login"
               onClick={() => setIsOpen(false)}
             >
-              <i className="bi bi-box-arrow-in-right me-1"></i>
-              Entrar
+              {usuarioLogado ? 
+                <>
+                  <i className="bi bi-box-arrow-left me-1"></i>
+                  Sair
+                </> : 
+                <>
+                  <i className="bi bi-box-arrow-in-right me-1"></i>
+                  Entrar
+                </>
+              }
             </NavLink>
           </div>
         )}

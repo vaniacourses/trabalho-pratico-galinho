@@ -37,14 +37,14 @@ public class MovimentacaoEstoqueService {
         return movimentacaoEstoqueMapper.toMovimentacoesDto(movimentacoes);
     }
 
-    public MovimentacaoEstoqueDto atualizarMovimentacao(MovimentacaoEstoqueDto MovimentacaoEstoqueDto){
-        MovimentacaoEstoque movimentacao = movimentacaoEstoqueMapper.toMovimentacaoEstoque(MovimentacaoEstoqueDto);
+    public MovimentacaoEstoqueDto atualizarMovimentacao(MovimentacaoEstoqueDto movimentacaoEstoqueDto){
+        MovimentacaoEstoque movimentacao = movimentacaoEstoqueMapper.toMovimentacaoEstoque(movimentacaoEstoqueDto);
         movimentacao = movimentacaoEstoqueRepository.save(movimentacao);
         return movimentacaoEstoqueMapper.toMovimentacaoEstoqueDto(movimentacao);
     }
 
-    public MovimentacaoEstoqueDto cadastrarMovimentacao(MovimentacaoEstoqueCreate MovimentacaoEstoqueCreate){
-        MovimentacaoEstoque movimentacao = movimentacaoEstoqueMapper.toMovimentacaoEstoque(MovimentacaoEstoqueCreate);
+    public MovimentacaoEstoqueDto cadastrarMovimentacao(MovimentacaoEstoqueCreate movimentacaoEstoqueCreate){
+        MovimentacaoEstoque movimentacao = movimentacaoEstoqueMapper.toMovimentacaoEstoque(movimentacaoEstoqueCreate);
         movimentacao = movimentacaoEstoqueRepository.save(movimentacao);
         return movimentacaoEstoqueMapper.toMovimentacaoEstoqueDto(movimentacao);
     }

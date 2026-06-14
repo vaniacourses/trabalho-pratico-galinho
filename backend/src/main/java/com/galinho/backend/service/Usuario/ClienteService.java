@@ -6,7 +6,8 @@ import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.factories.Usuario.ClienteFactory;
 import com.galinho.backend.mapper.Usuario.ClienteMapper;
 import com.galinho.backend.model.Usuarios.Cliente;
-import com.galinho.backend.repository.ClienteRepository;
+import com.galinho.backend.repository.Usuario.ClienteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -63,7 +64,8 @@ public class ClienteService {
     }
 
     public ClienteResponse alterarCliente(ClienteRequest clienteRequest) {
-        Cliente cliente = clienteMapper.toCliente(clienteRequest);
+        Cliente cliente = clienteRepository.findByEmail(clienteRequest.email());
+        clienteMapper.updateCliente(clienteRequest, cliente);
         cliente = clienteRepository.save(cliente);
         return clienteMapper.toClienteResponse(cliente);
     }

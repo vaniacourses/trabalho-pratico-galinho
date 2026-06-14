@@ -6,7 +6,8 @@ import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.factories.Usuario.CaixaFactory;
 import com.galinho.backend.mapper.Usuario.CaixaMapper;
 import com.galinho.backend.model.Usuarios.Caixa;
-import com.galinho.backend.repository.CaixaRepository;
+import com.galinho.backend.repository.Usuario.CaixaRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

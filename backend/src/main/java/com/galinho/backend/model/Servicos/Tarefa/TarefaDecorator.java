@@ -24,9 +24,9 @@ public abstract class TarefaDecorator extends TarefaEntity{
     public abstract String getDescricao();
     public abstract String getDescricaoTotal();
     
-    public TarefaDecorator(){};
+    protected TarefaDecorator(){}
     
-    public TarefaDecorator(LocalDateTime data, BigDecimal valor, String descricao, TarefaEntity decorada){
+    protected TarefaDecorator(LocalDateTime data, BigDecimal valor, String descricao, TarefaEntity decorada){
         tarefaDecorada = decorada;
         this.data = data;
         this.valor = valor;
