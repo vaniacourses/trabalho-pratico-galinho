@@ -2,12 +2,14 @@ import type { List } from "lodash";
 import type { Veiculo } from "./Veiculo";
 
 export interface Cliente{
-    id: number;
-    nome: String;
-    email: String;
-    senha: String;
-    cpf: String;
-    telefone: String;
-    dataCadastro: String;
-    veiculos: List<Veiculo>;
+    id?: number;
+    nome: string;
+    email: string;
+    senha: string;
+    cpf: string;
+    telefone: string;
+    dataCadastro?: Date;
+    endereco: string;
+    veiculos?: List<Veiculo>;
+    role?: string;
 }

@@ -64,7 +64,8 @@ public class ClienteService {
     }
 
     public ClienteResponse alterarCliente(ClienteRequest clienteRequest) {
-        Cliente cliente = clienteMapper.toCliente(clienteRequest);
+        Cliente cliente = clienteRepository.findByEmail(clienteRequest.email());
+        clienteMapper.updateCliente(clienteRequest, cliente);
         cliente = clienteRepository.save(cliente);
         return clienteMapper.toClienteResponse(cliente);
     }
