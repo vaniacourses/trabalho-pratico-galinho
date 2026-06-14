@@ -1,5 +1,6 @@
 package com.galinho.backend.model.Estoque;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -28,6 +29,23 @@ public class Fornecedor {
     String cnpj;
     String email;
     String endereco;
-    @OneToMany(mappedBy = "fornecedor")
+
+    @OneToMany
     List<Produto> produtos;
+
+    public Fornecedor(String nome, String cnpj, String email, String endereco){
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.endereco = endereco;
+        this.produtos = new ArrayList<>();
+    }
+
+    public void adicionarProduto(Produto produto) {
+        produtos.add(produto);
+    }
+
+    public void removerProduto(Produto produto) {
+        produtos.remove(produto);
+    }
 }

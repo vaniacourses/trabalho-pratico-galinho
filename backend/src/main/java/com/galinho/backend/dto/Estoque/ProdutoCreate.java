@@ -5,8 +5,7 @@ public record ProdutoCreate(
     String descricao,
     Double preco,
     int quantidadeMaxima,
-    int quantidadeMinima,
-    FornecedorDto fornecedorDto
+    int quantidadeMinima
 ) {
     
 }

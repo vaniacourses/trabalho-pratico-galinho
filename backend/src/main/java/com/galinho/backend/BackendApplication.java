@@ -22,6 +22,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.galinho.backend.dto.Estoque.FornecedorDto;
+import com.galinho.backend.model.Estoque.Fornecedor;
+import com.galinho.backend.model.Estoque.Produto;
 import com.galinho.backend.model.Servicos.HistoricoServico;
 import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.model.Servicos.Veiculo;
@@ -32,9 +35,17 @@ import com.galinho.backend.repository.ClienteRepository;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
 import com.galinho.backend.repository.VeiculoRepository;
+import com.galinho.backend.repository.Estoque.FornecedorRepository;
+import com.galinho.backend.repository.Estoque.ProdutoRepository;
 
 @SpringBootApplication
 public class BackendApplication implements CommandLineRunner {
+
+	@Autowired
+	private ProdutoRepository produtoRepository;
+
+	@Autowired
+	private FornecedorRepository fornecedorRepository;
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -108,7 +119,25 @@ public class BackendApplication implements CommandLineRunner {
 				"25997512135",
 				List.of("habilidade 1","habilidade 2"));
 		usuarioRepository.save(usuario);
-		
+
+		Produto produto = new Produto("00001",
+									  "Arroz integral",
+									  "Pacote de arroz integral de 1kg",
+									  24.90,
+									  500,
+									  50);
+		produtoRepository.save(produto);
+
+		Fornecedor fornecedor = new Fornecedor("Distribuidora Rio Alimentos",
+												"12.345.678/0001-90",
+												"contato@rioalimentos.com.br",
+												"Rua das Palmeiras, 123 - Niterói/RJ");
+		fornecedorRepository.save(fornecedor);
+
+		fornecedor.adicionarProduto(produto);
+		fornecedorRepository.save(fornecedor);
+
+
 		Servico servico1 = new Servico("teste", new BigDecimal(10000), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
 		Servico servico2 = new Servico("teste2", new BigDecimal(10002), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
 		Servico servico3 = new Servico("teste3", new BigDecimal(10004), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo2);
