@@ -11,7 +11,7 @@ import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.mapper.Veiculo.MapperVeiculo;
 import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.model.Usuarios.Cliente;
-import com.galinho.backend.repository.ClienteRepository;
+import com.galinho.backend.repository.Usuario.ClienteRepository;
 import com.galinho.backend.repository.VeiculoRepository;
 
 @Service
