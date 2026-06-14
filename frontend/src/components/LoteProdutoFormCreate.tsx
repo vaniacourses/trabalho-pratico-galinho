@@ -1,82 +1,87 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import type { Servico } from "../interfaces/Servico";
-import type { ServicoCreate } from "../interfaces/ServicoCreate";
-import useCadastrarServico from "../hooks/useCadastrarServico";
+import useCadastrarLoteProduto from "../hooks/useCadastrarLoteProduto";
+import type { Fornecedor } from "../interfaces/Fornecedor";
+import type { Produto } from "../interfaces/Produto";
+import type { LoteProdutoCreate } from "../interfaces/LoteProdutoCreate";
+import type { LoteProduto } from "../interfaces/LoteProduto";
 
-interface FormServico {
-  descricao: string;
-  orcamento: string;
-  veiculoPlaca: string;
-  dataPrevisao: string;
+interface FormLoteProduto {
+  quantidade: string;
+  validade: string;
+  codigoLote: string;
+  fornecedorId: number;
+  produtoId: number;
 }
 
-const ServicoFormCreate = () => {
-  //const { register, handleSubmit } = useForm<FormServico>();  const navigate = useNavigate();
-  const { mutate: cadastrarServico } = useCadastrarServico();
+const LoteProdutoFormCreate = () => {
+  const { register, handleSubmit } = useForm<FormLoteProduto>();
+  const navigate = useNavigate();
+  const { mutate: cadastrarLoteProduto } = useCadastrarLoteProduto();
 
-  const submit = ({ descricao, orcamento, veiculoPlaca, dataPrevisao }: FormServico) => {
-    const servico: ServicoCreate = {
-        descricao,
-        orcamento: +orcamento,
-        veiculoPlaca, //: { id : veiculoId } as any,
-        dataPrevisao: `${dataPrevisao}T00:00:00`,
-        dataInicio: new Date().toISOString(),
-        status: 'A_SER_INICIADO'
+  const submit = ({
+    quantidade,
+    validade,
+    codigoLote,
+    fornecedorId,
+    produtoId,
+  }: FormLoteProduto) => {
+    const loteProduto: LoteProdutoCreate = {
+      id: null,
+      quantidade: +quantidade,
+      validade: `${validade}T00:00:00`,
+      codigoLote,
+      fornecedorId: +fornecedorId,
+      produtoId: +produtoId,
     };
-
-    // Long id,
-    // TipoStatus status,
-    // LocalDateTime dataInicio,
-    // LocalDateTime dataFim,
-    // LocalDateTime dataPrevisao,
-    // String descricao,
-    // BigDecimal orcamento,
-    // PagamentoServico pagamento,
-    // Veiculo veiculo
-
-    cadastrarServico(servico, {
-      onSuccess: (servico: Servico) => {
-        navigate("/servicos/" + servico.id);
+    cadastrarLoteProduto(loteProduto, {
+      onSuccess: (loteProduto: LoteProduto) => {
+        navigate("/lote-produto/" + loteProduto.id);
       },
     });
   };
 
   return (
     <form onSubmit={handleSubmit(submit)} className="mt-6">
-
       <input
-        {...register("descricao")}
-        placeholder="Descrição"
+        {...register("quantidade")}
+        placeholder="Quantidade"
         className="input mb-2"
       />
 
       <input
-        {...register("orcamento")}
-        type="number"
-        placeholder="Orçamento"
-        className="input mb-2"
-      />
-
-      <input
-        {...register("veiculoPlaca")}//, { valueAsNumber: true })}
-        // type="number"
-        placeholder="Placa Veiculo"
-        className="input mb-2"
-      />
-
-      <p className="">{"Data Previsao"}</p>
-      <input
-        {...register("dataPrevisao")}
+        {...register("validade")}
         type="date"
+        placeholder="Validade"
         className="input mb-2"
       />
 
-      <button type="submit" className="btn-success px-5 py-1 mt-4">
-        Criar Serviço
+      <input
+        {...register("codigoLote")} //, { valueAsNumber: true })}
+        type="number"
+        placeholder="Código do Lote"
+        className="input mb-2"
+      />
+
+      <input
+        {...register("fornecedorId")}
+        type="number"
+        placeholder="fornecedor"
+        className="input mb-2"
+      />
+
+      <input
+        {...register("produtoId")}
+        type="number"
+        placeholder="produto"
+        className="input mb-2"
+      />
+
+      <button type="submit" className="btn-success mt-4 px-5 py-1">
+        Criar Lote Produto
       </button>
     </form>
   );
 };
 
-export default ServicoFormCreate;
+export default LoteProdutoFormCreate;

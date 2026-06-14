@@ -9,7 +9,7 @@ public record LoteProdutoDto (
     int quantidade,
     LocalDateTime validade,
     String codigoLote,
-    FornecedorDto fornecedorDto,
+    FornecedorDto fornecedor,
     Produto produto
 ) {
 

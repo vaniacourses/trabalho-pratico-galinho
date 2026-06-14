@@ -28,7 +28,7 @@ public class Fornecedor {
     String cnpj;
     String email;
     String endereco;
-    @OneToMany(mappedBy = "fornecedor")
+    @OneToMany
     List<Produto> produtos;
 
     public Fornecedor(String nome, String cnpj, String email, String endereco, List<Produto> produtos) {

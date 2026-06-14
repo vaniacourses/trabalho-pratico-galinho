@@ -51,6 +51,11 @@ public class Veiculo {
         this.cor = cor;
     }
 
+        public Veiculo(String placa, Cliente cliente) {
+        this.placa = placa;
+        this.cliente = cliente;
+    }
+
     public Veiculo orElseThrow(Object object) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");

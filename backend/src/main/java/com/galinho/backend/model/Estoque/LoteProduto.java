@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,10 +25,10 @@ public class LoteProduto {
     private LocalDateTime validade;
     private String codigoLote;
 
-    @OneToOne
+    @ManyToOne
     private Fornecedor fornecedor;
     
-    @OneToOne
+    @ManyToOne
     private Produto produto;
 
     public LoteProduto(int quantidade, LocalDateTime validade, String codigoLote, Fornecedor fornecedor, Produto produto){
