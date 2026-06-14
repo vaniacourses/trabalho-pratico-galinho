@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.galinho.backend.dto.ServicoCreate;
 import com.galinho.backend.dto.ServicoDto;
@@ -79,7 +77,7 @@ public class ServicoService {
         Servico servico = mapperServico.toServico(servicoCreate);
         // Veiculo veiculo = veiculoRepository.findById(servicoCreate.veiculoId())
         //     .orElseThrow(() -> new RuntimeException("Veículo não encontrado"));
-        Veiculo veiculo = veiculoRepository.findByPlaca(servicoCreate.veiculoPlaca())
+        Veiculo veiculo = veiculoRepository.recuperarVeiculoPorPlaca(servicoCreate.veiculoPlaca())
             .orElseThrow(() -> new RuntimeException(
             "Veículo com placa " + servicoCreate.veiculoPlaca() + " não encontrado"
         ));

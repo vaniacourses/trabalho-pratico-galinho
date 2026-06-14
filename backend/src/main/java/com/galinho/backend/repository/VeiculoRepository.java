@@ -1,6 +1,7 @@
 package com.galinho.backend.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -38,7 +39,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
         where v.placa = :placa 
         order by v.id
     """)
-    Veiculo recuperarVeiculoPorPlaca(@Param("placa") String placa);
+    Optional<Veiculo> recuperarVeiculoPorPlaca(@Param("placa") String placa);
 
 
     // recuperar veiculo de cliente

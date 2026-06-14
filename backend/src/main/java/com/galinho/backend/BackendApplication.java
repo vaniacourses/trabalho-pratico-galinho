@@ -2,29 +2,33 @@ package com.galinho.backend;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import com.galinho.backend.model.Usuarios.*;
-import com.galinho.backend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.galinho.backend.model.Servicos.HistoricoServico;
+import com.galinho.backend.model.Estoque.Fornecedor;
+import com.galinho.backend.model.Estoque.Produto;
 import com.galinho.backend.model.Servicos.Servico;
-import com.galinho.backend.model.Servicos.Veiculo;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaAdicional;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaEntity;
 import com.galinho.backend.model.Servicos.Tarefa.TarefaSimples;
+import com.galinho.backend.model.Servicos.Veiculo;
+import com.galinho.backend.model.Usuarios.Caixa;
+import com.galinho.backend.model.Usuarios.Cliente;
+import com.galinho.backend.model.Usuarios.Gerente;
+import com.galinho.backend.model.Usuarios.GestorDeEstoque;
+import com.galinho.backend.model.Usuarios.Mecanico;
+import com.galinho.backend.model.Usuarios.Usuario;
 import com.galinho.backend.repository.ClienteRepository;
+import com.galinho.backend.repository.Estoque.FornecedorRepository;
+import com.galinho.backend.repository.Estoque.ProdutoRepository;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 import com.galinho.backend.repository.ServicoRepository;
+import com.galinho.backend.repository.UsuarioRepository;
 import com.galinho.backend.repository.VeiculoRepository;
 
 @SpringBootApplication
@@ -35,8 +39,13 @@ public class BackendApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ServicoRepository servicoRepository;
-	
-	
+
+	@Autowired
+	private FornecedorRepository fornecedorRepository;
+
+	@Autowired
+	private ProdutoRepository produtoRepository;
+
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 	@Autowired
@@ -100,6 +109,13 @@ public class BackendApplication implements CommandLineRunner {
 				"25997512135",
 				List.of("habilidade 1","habilidade 2"));
 		usuarioRepository.save(usuario);
+
+		Fornecedor fornecedor1 = new Fornecedor("lucas", "1111111", "teste@gmail.com","lugar ai", null);
+		Produto produto = new Produto(12,"banana", "descricao", new BigDecimal(10000), 3, 1);
+		fornecedorRepository.save(fornecedor1);
+		produtoRepository.save(produto);
+	
+		//LoteProduto loteProduto = new LoteProduto(150, LocalDateTime.of(2010, 10, 10, 10, 30, 0), "LOT-2026-005X", null, null);
 		
 		Servico servico1 = new Servico("teste", new BigDecimal(10000), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
 		Servico servico2 = new Servico("teste2", new BigDecimal(10002), LocalDateTime.of(2010, 10, 10, 10, 30, 0), veiculo1);
