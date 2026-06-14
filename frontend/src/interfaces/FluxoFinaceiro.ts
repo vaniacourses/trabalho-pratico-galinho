@@ -13,5 +13,6 @@ export interface FluxoFinanceiroCreate {
   titulo: string;
   descricao: string;
   tipo: "ENTRADA" | "SAIDA";
+  data: string;
   origemOuDestino: string;
 }

@@ -10,8 +10,14 @@ const FluxoFormCreate = () => {
 
   const onSubmit = (data: FluxoFinanceiroCreate) => {
     // Converte a string do input para número
-    const fluxoFormatado = { ...data, valor: Number(data.valor) };
+    let fluxoFormatado = { ...data, valor: Number(data.valor) };
     
+    // Adiciona a hora para o Java não reclamar!
+    if (fluxoFormatado.data) {
+      fluxoFormatado.data = `${fluxoFormatado.data}T12:00:00`;
+    }
+    
+    // Envia para o servidor
     adicionar(fluxoFormatado, {
       onSuccess: () => {
         navigate("/financeiro"); // Volta para a tabela após salvar
@@ -54,6 +60,17 @@ const FluxoFormCreate = () => {
             placeholder="0.00" 
           />
           {errors.valor && <span className="text-red-500 text-sm">{errors.valor.message}</span>}
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">Data do Lançamento</label>
+          <input 
+            type="date" 
+            {...register("data", { required: true })} 
+            className="input w-full" 
+            // Data atual por padrao 
+            defaultValue={new Date().toISOString().split('T')[0]} 
+          />
         </div>
 
         <div>

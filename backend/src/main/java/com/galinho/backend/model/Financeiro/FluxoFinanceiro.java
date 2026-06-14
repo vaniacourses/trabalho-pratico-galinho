@@ -34,7 +34,7 @@ public class FluxoFinanceiro {
     @Enumerated(EnumType.STRING)
     private TipoMovimentacao tipo;
 
-    // Construtor atualizado
+    
     public FluxoFinanceiro(BigDecimal valor, String titulo, String descricao, TipoMovimentacao tipo, LocalDateTime data, String origemOuDestino) {
         this.valor = valor;
         this.titulo = titulo;

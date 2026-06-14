@@ -2,12 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import useRealizarPagamento from "../hooks/useRealizarPagamento";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useRecuperarServicoClientePorId from "../hooks/useRecuperarServicoClientePorId";
 
 const pagarServicoPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { data: servico, isLoading } = useRecuperarServicoClientePorId(Number(id));
   const { mutate: realizarPagamento, isPending } = useRealizarPagamento();
-  
   const [metodo, setMetodo] = useState<"PIX" | "DINHEIRO" | "CARTAO">("PIX");
   const { register, handleSubmit, reset } = useForm();
 
@@ -33,11 +34,17 @@ const pagarServicoPage = () => {
     });
   };
 
+  if (isLoading) return <div>Carregando...</div>;
+  
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 shadow-md rounded-lg">
       <h1 className="mb-1 text-2xl font-bold text-gray-800">Finalizar Serviço #{id}</h1>
       <p className="text-gray-500 mb-4">Selecione a forma de pagamento para dar baixa na O.S.</p>
       <hr className="mb-6" />
+      <h1>Finalizar Serviço De Id: {id}</h1>
+     {/* DADOS DO CABEÇA */}
+      <p>Descrição: {servico?.descricao}</p> 
+      <p>Orçamento: R$ {servico?.orcamento}</p>
 
       {/* Seleção do Método */}
       <div className="flex gap-4 mb-6">
@@ -68,7 +75,7 @@ const pagarServicoPage = () => {
           <input {...register("titulo", { required: true })} className="input" placeholder="Ex: Pagamento Cliente João" defaultValue={`Pagamento O.S. ${id}`} />
         </div>
 
-        {/* Campos Condicionais baseados no Backend DTOs */}
+        {/*Condicionais baseados nos DTOs */}
         {metodo === "PIX" && (
           <div>
             <label className="block mb-1 font-medium">Chave PIX Informada</label>
@@ -79,8 +86,8 @@ const pagarServicoPage = () => {
         {metodo === "CARTAO" && (
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1 font-medium">Número do Cartão (Últimos 4 dígitos)</label>
-              <input {...register("numeroCartao", { required: true, maxLength: 4 })} className="input" placeholder="Ex: 1234" maxLength={4} />
+              <label className="block mb-1 font-medium">Número do Cartão (Somente Dígitos)</label>
+              <input {...register("numeroCartao", { required: true, maxLength: 4 })} className="input" placeholder="Ex: 12345678" maxLength={4} />
             </div>
             <div>
               <label className="block mb-1 font-medium">Parcelas</label>
@@ -95,10 +102,10 @@ const pagarServicoPage = () => {
 
         {metodo === "DINHEIRO" && (
           <div>
-            <label className="block mb-1 font-medium">Quantia Recebida (Para cálculo de troco)</label>
+            <label className="block mb-1 font-medium">Quantia Recebida </label>
             <div className="relative">
-              <span className="absolute left-3 top-2 text-gray-500">R$</span>
-              <input type="number" step="0.01" {...register("quantiaRecebida", { required: true, min: 0 })} className="input pl-10" placeholder="0.00" />
+              {/*<span className="absolute left-3 top-2 text-gray-500">R$</span>*/}
+              <input type="number" step="0.01" {...register("quantiaRecebida", { required: true, min: 0 })} className="input pl-10" placeholder="0.00R$" />
             </div>
           </div>
         )}

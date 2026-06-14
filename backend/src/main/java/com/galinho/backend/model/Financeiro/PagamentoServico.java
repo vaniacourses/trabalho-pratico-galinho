@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.galinho.backend.model.Servicos.Servico;
 
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public abstract class PagamentoServico { //classe talvez
     private LocalDateTime dataPagamento;
 
     @OneToOne
+    @JsonIgnore // Para n dar loop infinito no front
     @JoinColumn(name = "servico_id")
     private Servico servico;
 

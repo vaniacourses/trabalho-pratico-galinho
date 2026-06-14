@@ -40,10 +40,10 @@ const FinanceiroPage = () => {
       <h1 className="mb-1 text-xl font-semibold">Caixa da Oficina</h1>
       <hr className="mb-4" />
 
-      {/* PAINEL DE AÇÕES DO CAIXA (Totalmente isolado do módulo de serviços) */}
+      {/* PAINEL DO CAIXA */}
       <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         
-        {/* Ação 1: Receber O.S. */}
+        {/* Receber O.S. */}
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-center">
           <label className="block text-sm font-bold text-gray-800 mb-2">
             <i className="bi bi-receipt"></i> Receber Pagamento de O.S.
@@ -54,7 +54,7 @@ const FinanceiroPage = () => {
               value={idOs}
               onChange={(e) => setIdOs(e.target.value)}
               className="input w-full" 
-              placeholder="Digite o Nº do Serviço" 
+              placeholder="Digite o Id do Serviço" 
             />
             <button onClick={irParaPagamento} className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 font-semibold transition-colors whitespace-nowrap">
               Ir para Checkout
@@ -62,7 +62,7 @@ const FinanceiroPage = () => {
           </div>
         </div>
 
-        {/* Ação 2: Nova Saída/Entrada Manual */}
+        {/* Saída/Entrada Manual */}
         <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-center items-start">
           <label className="block text-sm font-bold text-gray-800 mb-2">
             <i className="bi bi-wallet2"></i> Lançamento Manual no Caixa

@@ -10,7 +10,7 @@ const processarPagamento = async ({idServico, tipoMetodo, payload}: DadosPagamen
     const endpoint = `http://localhost:8080/financeiro/pagamentos/${tipoMetodo.toLowerCase()}/${idServico}`;
     const response = await fetch(endpoint,{
         method: "POST",
-        headers: {"Content-Type": "aplication/jason"},
+        headers: {"Content-Type": "application/json"},        
         body: JSON.stringify(payload),
     });
 

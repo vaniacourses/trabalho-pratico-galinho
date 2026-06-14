@@ -1,16 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import type { FluxoFinanceiro } from "../interfaces/FluxoFinaceiro";
 
-const recuperarFluxos = async (): Promise<FluxoFinanceiro[]> => {
-  const response = await fetch("http://localhost:8080/financeiro/fluxos");
-  if (!response.ok) throw new Error("Erro ao buscar os fluxos financeiros");
+interface FiltroAtivo {
+  inicio: string;
+  fim: string;
+}
+
+const recuperarFluxos = async (filtro: FiltroAtivo): Promise<FluxoFinanceiro[]> => {
+  let url = "http://localhost:8080/financeiro/fluxos";
+  
+  if (filtro.inicio !== "" && filtro.fim !== "") {
+    // Adiciona as horas para o Java aceitar como LocalDateTime
+    const inicioFormatado = `${filtro.inicio}T00:00:00`;
+    const fimFormatado = `${filtro.fim}T23:59:59`;
+    
+    url = `http://localhost:8080/financeiro/fluxos/periodo?inicio=${inicioFormatado}&fim=${fimFormatado}`;
+  }
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error("Erro ao buscar as movimentações financeiras.");
+  }
+
   return response.json();
 };
 
-const useRecuperarFluxos = (filtroAtivo: { inicio: string; fim: string; }) => {
+const useRecuperarFluxos = (filtro: FiltroAtivo) => {
   return useQuery({
-    queryKey: ["fluxos"],
-    queryFn: recuperarFluxos,
+    queryKey: ["fluxos", filtro.inicio, filtro.fim],
+    queryFn: () => recuperarFluxos(filtro),
   });
 };
 

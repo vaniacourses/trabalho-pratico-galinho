@@ -23,6 +23,20 @@ public class FluxoService {
     @Autowired
     private FinanceiroMapper financeiroMapper;
 
+   @Transactional
+    public FluxoFinanceiroDto atualizar(Long id, FluxoFinanceiroCreate dto) {
+        FluxoFinanceiro fluxo = fluxoRepository.findById(id).orElseThrow();
+        fluxo.setValor(dto.valor());
+        fluxo.setTitulo(dto.titulo());
+        fluxo.setDescricao(dto.descricao());
+        fluxo.setTipo(dto.tipo()); 
+        fluxo.setOrigemOuDestino(dto.origemOuDestino());
+        
+        fluxo.setData(dto.data());
+        
+        return financeiroMapper.toFluxoFinanceiroDTO(fluxoRepository.save(fluxo));
+    }
+
     @Transactional
     public FluxoFinanceiroDto gerarFluxo(FluxoFinanceiroCreate dto) {
         FluxoFinanceiro fluxo = new FluxoFinanceiro();
@@ -32,6 +46,12 @@ public class FluxoService {
         fluxo.setTipo(dto.tipo()); 
         fluxo.setData(LocalDateTime.now());
         fluxo.setOrigemOuDestino(dto.origemOuDestino());
+
+        if (dto.data() != null) {
+            fluxo.setData(dto.data()); // Usa a data do front
+        } else {
+            fluxo.setData(LocalDateTime.now());
+        }
         
         FluxoFinanceiro salvo = fluxoRepository.save(fluxo);
         return financeiroMapper.toFluxoFinanceiroDTO(salvo);
