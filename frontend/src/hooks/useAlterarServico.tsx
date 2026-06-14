@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../main";
 import type { Servico } from "../interfaces/Servico";
+import type { ServicoUpdate } from "../interfaces/ServicoUpdate";
 
-const atualizarServico = async (servico: Servico) : Promise<Servico> => {
+const atualizarServico = async (servico: ServicoUpdate) : Promise<Servico> => {
   const response = await fetch("http://localhost:8080/servicos", {
     method: "PUT",
     headers: {
@@ -22,7 +23,7 @@ const atualizarServico = async (servico: Servico) : Promise<Servico> => {
 
 const useAtualizarServico = () => {
   return useMutation({
-    mutationFn: (servico: Servico) => atualizarServico(servico),
+    mutationFn: (servico: ServicoUpdate) => atualizarServico(servico),
 
     onSuccess: () => {
       queryClient.invalidateQueries({

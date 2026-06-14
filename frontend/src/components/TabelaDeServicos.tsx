@@ -17,6 +17,9 @@ interface Props {
 
 //Depois passar a parte de veiculo para Link que envia para a pagina que mostra todos os servicos do veiculo
 const TabelaDeServicos = ({ servicos }: Props) => {
+  let complementoLink = "" //se for mecanico ou + vai para pagina servicos/mecanico
+  if(true){complementoLink = "mecanico/"}  //MUDAR AQUI QUANDO FOR POSSIVEL VER ROLE
+
   return (
     <div className="overflow-x-auto mb-3">
       <table className="w-full border-2 border-gray-400">
@@ -39,12 +42,15 @@ const TabelaDeServicos = ({ servicos }: Props) => {
           {servicos.map((servico, index) => (
             <tr key={servico.id} className={"border border-gray-200 " + (index % 2 === 0 ? "bg-white" : "bg-gray-100")}>
               <td className="border-r border-r-gray-200 text-center py-1 w-[6%]">
-                <Link className="font-bold text-green-700" to={"/servicos/" + servico.id}>{servico.id}</Link>
+                <Link className="font-bold text-green-700" 
+                  to={"/servicos/" + complementoLink + servico.id}>
+                  {servico.id}
+                </Link>
               </td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[12%]">{servico.status}</td>
               <td className="border-r border-r-gray-200 ps-2 py-1 w-[20%]"> {servico.descricao} </td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[13%]">{servico.orcamento}</td>
-              <td className="border-r border-r-gray-200 text-center py-1 w-[13%]">
+              <td className="border-r border-r-gray-200 text-center py-1 w-[10%]">
                 {servico.veiculo.placa}
               </td>
               <td className="border-r border-r-gray-200 text-center py-1 w-[8%]">{servico.veiculo.cliente.nome}</td>

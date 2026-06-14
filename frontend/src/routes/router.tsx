@@ -11,6 +11,8 @@ import CadastrarServicoPage from "../pages/CadastrarServicoPage";
 import CadastroClientePage from "../pages/CadastroClientePage";
 import ClientePage from "../pages/ClientePage";
 import AlterarClientePage from "../pages/AlterarClientePage";
+import LoteProdutoPage from "../pages/LoteProdutoPage";
+import CadastrarLoteProdutoPage from "../pages/CadastrarLoteProdutoPage";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +30,9 @@ const router = createBrowserRouter([
             {path: "servicos/mecanico/:id", element: <ServicoPageMecanico/>},
             {path: "cadastrar-servico", element: <CadastrarServicoPage/>},
             {path: "clientes/:id", element: <ClientePage />},
-            {path: "alterar-cliente", element: <AlterarClientePage />}
+            {path: "alterar-cliente", element: <AlterarClientePage />},
+            {path: "lote-produto", element: <LoteProdutoPage/>},
+            {path: "cadastrar-lote-produto", element: <CadastrarLoteProdutoPage/>}
         ]
     }
 ])

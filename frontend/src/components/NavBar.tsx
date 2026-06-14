@@ -6,6 +6,8 @@ import useUsuarioStore from "../store/UsuarioStore";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [servicosOpen, setServicosOpen] = useState(false);
+  const [produtosOpen, setProdutosOpen] = useState(false);
 
   const usuarioLogado = useUsuarioStore((s) => s.usuarioLogado);
   const roleUsuarioLogado = useUsuarioStore((s) => s.roleUsuarioLogado).toLowerCase();
@@ -26,14 +28,57 @@ const NavBar = () => {
               <i className="bi bi-house me-1"></i>
               Home
             </NavLink>
-            <NavLink className="text-gray-700 hover:text-black" to="/servicos">
-              <i className="bi bi-card-checklist me-1"></i>
-              Serviços
-            </NavLink>
-            <NavLink className="text-gray-700 hover:text-black" to="/servicosEmProcesso">
-              <i className="bi bi-card-list me-1"></i>
-              Serviços Em Processo
-            </NavLink>
+
+            <div className="relative">
+              <button
+                onClick={() => setServicosOpen(!servicosOpen)}
+                className="text-gray-700 hover:text-black"
+              >
+                <i className="bi bi-card-checklist me-1"></i>
+                Serviços {servicosOpen ? "▲" : "▼"}
+              </button>
+
+              {servicosOpen && (
+                <div className="absolute left-0 mt-2 w-56 rounded-md border bg-white shadow-lg">
+                  <NavLink
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    to="/servicos"
+                  >
+                    <i className="bi bi-card-checklist me-1"></i>
+                    Serviços
+                  </NavLink>
+
+                  <NavLink
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    to="/servicosEmProcesso"
+                  >
+                    <i className="bi bi-card-list me-1"></i>
+                    Serviços Em Processo
+                  </NavLink>
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => setProdutosOpen(!produtosOpen)}
+                className="text-gray-700 hover:text-black"
+              >
+                <i className="bi bi-card-checklist me-1"></i>
+                Produtos {produtosOpen ? "▲" : "▼"}
+              </button>
+
+              {produtosOpen && (
+                <div className="absolute left-0 mt-2 w-56 rounded-md border bg-white shadow-lg">
+                  <NavLink
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    to="/lote-produto"
+                  >
+                    <i className="bi bi-card-list me-1"></i>
+                    Lote Produtos
+                  </NavLink>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center space-x-4">

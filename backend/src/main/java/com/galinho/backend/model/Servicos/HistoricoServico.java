@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.galinho.backend.utils.TipoStatus;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,6 +27,8 @@ public class HistoricoServico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = true)
+    private String descricao;
 
     private LocalDateTime date;
     @Enumerated(EnumType.STRING)
@@ -35,10 +38,11 @@ public class HistoricoServico {
     @ManyToOne
     private Servico servico;
 
-    public HistoricoServico(TipoStatus status, BigDecimal orcamento, Servico servico){
+    public HistoricoServico(TipoStatus status, BigDecimal orcamento, Servico servico, String descricao){
         statusDoMomento = status;
         orcamentoDoMomento = orcamento;
         this.servico = servico;
         this.date = LocalDateTime.now();
+        this.descricao = descricao;
     }
 }

@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.galinho.backend.dto.HistoricoServicoDto;
+import com.galinho.backend.dto.ServicoDto;
+import com.galinho.backend.exception.EntidadeNaoEncontradaException;
 import com.galinho.backend.mapper.HistoricoServicoMapper;
 import com.galinho.backend.model.Servicos.HistoricoServico;
+import com.galinho.backend.model.Servicos.Servico;
 import com.galinho.backend.repository.HistoricoServicoRepository;
 
 @Service
@@ -19,6 +22,11 @@ public class HistoricoServicoService {
 
     public List<HistoricoServicoDto> recuperarHistoricoServicos(){
         List<HistoricoServico> historico = historicoServicoRepository.recuperarHistoricoServicos();
+        return historicoServicoMapper.toHistoricoServicosDto(historico);
+    }
+
+    public List<HistoricoServicoDto> recuperarHistoricoServico(long id){
+        List<HistoricoServico> historico = historicoServicoRepository.recuperarHistoricoServico(id);
         return historicoServicoMapper.toHistoricoServicosDto(historico);
     }
 }

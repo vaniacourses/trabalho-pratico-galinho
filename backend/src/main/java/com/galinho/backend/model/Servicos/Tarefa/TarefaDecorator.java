@@ -19,6 +19,10 @@ public abstract class TarefaDecorator extends TarefaEntity{
     protected BigDecimal valor;
     protected BigDecimal valorTotal;
     protected String descricao;
+
+    public abstract BigDecimal calcularValor();
+    public abstract String getDescricao();
+    public abstract String getDescricaoTotal();
     
     protected TarefaDecorator(){}
     

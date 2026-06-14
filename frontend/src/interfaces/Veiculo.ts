@@ -4,7 +4,7 @@ import type { Servico } from "./Servico";
 
 export interface Veiculo{
     id: number;
-    placa: String;
+    placa: string;
     servicos: List<Servico>;
     cliente: Cliente;
 }

@@ -5,6 +5,8 @@ import type { Servico } from "../interfaces/Servico";
 import useServicoStore from "../store/ServicoStore";
 import TabelaDeProdutos from "../components/TabelaDeProdutos";
 import useRecuperarServicoClientePorId from "../hooks/useRecuperarServicoClientePorId";
+import useRecuperarHistoricoServico from "../hooks/useRecuperarHistoricoServico";
+import TabelaDeHistoricoServicos from "../components/TabelaDeHistoricoServicos";
 
 const ServicoPageCliente = () => {
   // const [removido, setRemovido] = useState(false);
@@ -22,9 +24,16 @@ const ServicoPageCliente = () => {
   } = useRecuperarServicoClientePorId(+id!);    //, removido);
 
   const tratarEdicao = (servico: Servico) => {
+    //console.log("Selecionado:", servico);
     setServicoSelecionado(servico);
     navigate("/cadastrar-servico");
   };
+
+  const {
+    data: historico,
+    isLoading: buscandoHistorico,
+    error: errorRecuperarHistorico,
+  } = useRecuperarHistoricoServico(+id!);
 
   // const tratarRemocao = (id: number) => {
   //   removerProduto(id);
@@ -44,8 +53,11 @@ const ServicoPageCliente = () => {
 
   if (errorRecuperarServico) throw errorRecuperarServico;
   // if (errorRemoverProduto) throw errorRemoverProduto;
-  if (recuperandoServico)
+  if (recuperandoServico || buscandoHistorico)
     return <p className="text-lg">Recuperando servico...</p>;
+
+  console.log(historico);
+  
 
   return (
     <>
@@ -119,6 +131,13 @@ const ServicoPageCliente = () => {
             </div>
 
             <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
+              Data Previsao
+            </div>
+            <div className="col-span-8 lg:col-span-9 xl:col-span-10">
+              {dayjs(servico.dataPrevisao).format("DD/MM/YYYY")}
+            </div>
+
+            <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
               Data Fim
             </div>
             <div className="col-span-8 lg:col-span-9 xl:col-span-10">
@@ -141,8 +160,22 @@ const ServicoPageCliente = () => {
           </div>
           
           { servico.produtosUsados ? 
-          <TabelaDeProdutos produtos={servico.produtosUsados} /> : ""
+          <>
+            <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
+              Produtos Usados
+            </div>
+            <TabelaDeProdutos produtos={servico.produtosUsados} />
+          </>: ""
           } 
+
+          { historico.length!= 0 ? 
+          <>
+            <div className="col-span-4 mb-1 font-bold lg:col-span-3 xl:col-span-2">
+              {"Historico"}
+            </div>
+            <TabelaDeHistoricoServicos historicos={historico} />
+          </> : ""
+          }
             
         </div>
         <div className="col-span-4 me-3 xl:col-span-3">

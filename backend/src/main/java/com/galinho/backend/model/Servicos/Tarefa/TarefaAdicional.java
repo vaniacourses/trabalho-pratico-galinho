@@ -30,6 +30,10 @@ public class TarefaAdicional extends TarefaDecorator{
     }
 
     @Override
+    public String getDescricaoTotal(){
+        return tarefaDecorada.getDescricao().concat("\n" + descricao);
+    }
+
     public TarefaEntity getTarefaDecorada() {
         return tarefaDecorada;
     }

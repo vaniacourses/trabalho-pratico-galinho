@@ -12,7 +12,8 @@ public record HistoricoServicoDto(
     TipoStatus statusDoMomento,
     BigDecimal orcamentoDoMomento,
     @JsonProperty("servico")
-    ServicoDto servicoDto
+    ServicoDto servicoDto,
+    String descricao
 ) {
     
 }

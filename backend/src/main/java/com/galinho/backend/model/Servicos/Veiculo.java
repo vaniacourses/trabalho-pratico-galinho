@@ -21,21 +21,43 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "veiculo")
+@Table
 public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(unique = true)
     private String placa;
+    
     @OneToMany(mappedBy = "veiculo")
     @JsonIgnore
     private List<Servico> servicos;
+    
     @ManyToOne
     private Cliente cliente;
 
-    public Veiculo(String placa, Cliente cliente){
+    private String marca;
+    private String modelo;
+    private String ano;
+    private String cor;
+
+    public Veiculo(String placa, Cliente cliente, String marca, String modelo, String ano, String cor) {
         this.placa = placa;
         this.cliente = cliente;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.cor = cor;
+    }
+
+        public Veiculo(String placa, Cliente cliente) {
+        this.placa = placa;
+        this.cliente = cliente;
+    }
+
+    public Veiculo orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
     }
 }
